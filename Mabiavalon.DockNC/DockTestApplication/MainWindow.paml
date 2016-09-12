@@ -1,3 +1,5 @@
 ﻿<Window xmlns="https://github.com/avaloniaui" MinWidth="500" MinHeight="300" >
-    <TextBlock>I'm a Broke Dude Rocks! ;)</TextBlock> 
+	<Grid>
+		 <TextBlock>I'm a Broke Dude Rocks! ;)</TextBlock> 
+	</Grid>
 </Window>
