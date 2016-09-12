@@ -28,9 +28,88 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Serilog">
+      <HintPath>..\packages\Serilog.1.5.14\lib\net45\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.FullNetFx">
+      <HintPath>..\packages\Serilog.1.5.14\lib\net45\Serilog.FullNetFx.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat">
+      <HintPath>..\packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Sprache">
+      <HintPath>..\packages\Sprache.2.0.0.51\lib\portable-net4+netcore45+win8+wp8+sl5+MonoAndroid+Xamarin.iOS10+MonoTouch\Sprache.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\System.Reactive.Interfaces.3.0.0\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\System.Reactive.Core.3.0.0\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\System.Reactive.Linq.3.0.0\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\System.Reactive.PlatformServices.3.0.0\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading">
+      <HintPath>..\packages\System.Reactive.Windows.Threading.3.0.0\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Avalonia.Animation">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Animation.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Base">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Controls">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.DesignerSupport">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.DesignerSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Diagnostics">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.DotNetFrameworkRuntime">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.DotNetFrameworkRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Input">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Interactivity">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Layout">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Logging.Serilog">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Logging.Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Markup">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Markup.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Markup.Xaml">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Markup.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.ReactiveUI">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.ReactiveUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.SceneGraph">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.SceneGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Styling">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Styling.dll</HintPath>
+    </Reference>
+    <Reference Include="Avalonia.Themes.Default">
+      <HintPath>..\packages\Avalonia.0.4.1-build2057-alpha\lib\net45\Avalonia.Themes.Default.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
