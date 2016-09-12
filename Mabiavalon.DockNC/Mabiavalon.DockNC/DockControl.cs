@@ -10,7 +10,8 @@ namespace Mabiavalon.DockNC
 	{
 		public DockControl()
 		{
-			AffectsArrange(DockProperty);
+            AffectsArrange(DockProperty);
+            LastChildFillProperty.OverrideDefaultValue<DockControl>(true);
 		}
 	}
 }
