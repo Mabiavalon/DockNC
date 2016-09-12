@@ -16,7 +16,7 @@ namespace DockTestApplication
             base.Initialize();
         }
 
-        static void Main(string[] args) => AppBuilder.Configure<App>().UseWin32().UseDirect2D1().Start<MainWindow>();
+		static void Main(string[] args) => AppBuilder.Configure<App>().UsePlatformDetect().Start<MainWindow>();
 
         public static void AttachDevTools(Window window)
         {
