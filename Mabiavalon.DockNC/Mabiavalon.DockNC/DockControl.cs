@@ -6,12 +6,10 @@ using Avalonia.Media;
 
 namespace Mabiavalon.DockNC
 {
-	public class DockControl : DockPanel
+	public class DockControl : ContentControl
 	{
 		public DockControl()
 		{
-            AffectsArrange(DockProperty);
-            LastChildFillProperty.OverrideDefaultValue<DockControl>(true);
 		}
 	}
 }
