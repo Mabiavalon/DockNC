@@ -8,23 +8,23 @@ namespace Mabiavalon.DockNC
 {
 	public class DockControl : ContentControl
 	{
-	    public void Dock(Control control, Dock dock)
+	    public void Dock(object obj, Dock dock)
 	    {
 	        if (Content == null)
 	        {
 	            switch (dock)
 	            {
 	                case Avalonia.Controls.Dock.Left:
-                        Content = new Branch { Orientation = Orientation.Horizontal, FirstItem = control };
+                        Content = new Branch { Orientation = Orientation.Horizontal, FirstItem = obj };
                         break;
 	                case Avalonia.Controls.Dock.Bottom:
-                        Content = new Branch { Orientation = Orientation.Vertical, SecondItem = control };
+                        Content = new Branch { Orientation = Orientation.Vertical, SecondItem = obj };
                         break;
 	                case Avalonia.Controls.Dock.Right:
-                        Content = new Branch { Orientation = Orientation.Horizontal, SecondItem = control };
+                        Content = new Branch { Orientation = Orientation.Horizontal, SecondItem = obj };
 	                    break;
                     case Avalonia.Controls.Dock.Top:
-                        Content = new Branch { Orientation = Orientation.Vertical, FirstItem = control };
+                        Content = new Branch { Orientation = Orientation.Vertical, FirstItem = obj };
 	                    break;
                     default:
 	                    throw new ArgumentOutOfRangeException(nameof(dock), dock, null);
