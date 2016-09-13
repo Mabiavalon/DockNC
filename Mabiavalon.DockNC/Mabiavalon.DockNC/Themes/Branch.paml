@@ -1,5 +1,5 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:local="clr-namespace:Mabiavalon.DockNC;assembly=Mabiavalon.DockNC">
-    <Style Selector="local|Branch">
+    <Style Selector="local|Branch:vertical">
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Background="{TemplateBinding Background}"
@@ -9,10 +9,9 @@
                     <Grid.RowDefinitions>
                       <RowDefinition Height="{Binding #grid.TemplatedParent.FirstItemLength, Mode=TwoWay}"/>
                       <RowDefinition Height="Auto"/>
-                      <RowDefinition Height="{Binding #grid.TemplatedParent.SecondItemLength, Mode=TwoWay"/>  
+                      <RowDefinition Height="{Binding #grid.TemplatedParent.SecondItemLength, Mode=TwoWay}"/>  
                      </Grid.RowDefinitions>
                      <ContentPresenter Name="PART_FirstContentPresenter" Content="{TemplateBinding FirstItem}"/>
-                     <GridSplitter Grid.Row="1" Orientation="{TemplateBinding Orientation}" Height="5" HorizontalAlignment="Stretch"/>
                      <ContentPresenter Grid.Row="2" Name="PART_SecondContentPresenter" Content="{TemplateBinding SecondItem}"/>
                     </Grid>
                 </Border>
@@ -29,10 +28,9 @@
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="{Binding #grid.TemplatedParent.FirstItemLength, Mode=TwoWay}" />
               <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="{Binding #grid.TemplatedParent.SecondItemLength, Mode=TwoWay"/>
+              <ColumnDefinition Width="{Binding #grid.TemplatedParent.SecondItemLength, Mode=TwoWay}"/>
             </Grid.ColumnDefinitions>
             <ContentPresenter Name="PART_FirstContentPresenter" Content="{TemplateBinding FirstItem}"/>
-            <GridSplitter Grid.Column="1" Orientation="{TemplateBinding Orientation}" Width="5" HorizontalAlignment="Stretch"/>
             <ContentPresenter Grid.Column="2" Name="PART_SecondContentPresenter" Content="{TemplateBinding SecondItem}"/>
         </Grid>
         </Border>
