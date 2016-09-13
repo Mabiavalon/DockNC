@@ -1,0 +1,42 @@
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:local="clr-namespace:Mabiavalon.DockNC;assembly=Mabiavalon.DockNC">
+    <Style Selector="local|Branch:vertical">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                   <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="{TemplateBinding FirstItemLength, Mode=TwoWay}"/>
+                      <RowDefinition Height="Auto"/>
+                      <RowDefinition Height="{TemplateBinding SecondItemLength, Mode=TwoWay"/>  
+                     </Grid.RowDefinitions>
+                     <ContentPresenter Name="PART_FirstContentPresenter" Content="{TemplateBinding FirstItem}"/>
+                     <GridSplitter Grid.Row="1" Orientation="{TemplateBinding Orientation}" Height="5" HorizontalAlignment="Stretch"/>
+                     <ContentPresenter Grid.Row="2" Name="PART_SecondContentPresenter" Content="{TemplateBinding SecondItem}"/>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+  <Style Selector="local|Branch:horizontal">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="{TemplateBinding FirstItemLength, Mode=TwoWay}"/>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="{TemplateBinding SecondItemLength, Mode=TwoWay"/>
+            </Grid.ColumnDefinitions>
+            <ContentPresenter Name="PART_FirstContentPresenter" Content="{TemplateBinding FirstItem}"/>
+            <GridSplitter Grid.Column="1" Orientation="{TemplateBinding Orientation}" Width="5" HorizontalAlignment="Stretch"/>
+            <ContentPresenter Grid.Column="2" Name="PART_SecondContentPresenter" Content="{TemplateBinding SecondItem}"/>
+        </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>
