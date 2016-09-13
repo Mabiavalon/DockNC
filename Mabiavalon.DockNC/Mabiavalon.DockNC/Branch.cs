@@ -7,6 +7,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
+using Avalonia.Styling;
 
 namespace Mabiavalon.DockNC
 {
@@ -22,10 +23,10 @@ namespace Mabiavalon.DockNC
             AvaloniaProperty.Register<Branch, object>("SecondItem");
 
         public static readonly StyledProperty<GridLength> FirstItemLengthProperty =
-            AvaloniaProperty.Register<Branch, GridLength>("FirstItemLength");
+            AvaloniaProperty.Register<Branch, GridLength>("FirstItemLength", new GridLength(0.49999, GridUnitType.Star));
 
         public static readonly StyledProperty<GridLength> SecondItemLengthProperty =
-            AvaloniaProperty.Register<Branch, GridLength>("SecondItemLength");
+            AvaloniaProperty.Register<Branch, GridLength>("SecondItemLength", new GridLength(0.50001, GridUnitType.Star));
 
         static Branch()
         {
