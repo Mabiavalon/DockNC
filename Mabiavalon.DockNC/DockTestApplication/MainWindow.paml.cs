@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Mabiavalon.DockNC;
 
 namespace DockTestApplication
 {
@@ -9,6 +10,15 @@ namespace DockTestApplication
         {
             this.InitializeComponent();
             App.AttachDevTools(this);
+            var button = this.FindControl<Button>("TestButton");
+            button.Click += (sender, args) =>
+            {
+                var buttun = new Button();
+                buttun.Content = "TestButton In Left";
+
+                var docker = this.FindControl<DockControl>("Docker");
+                docker.Dock(buttun, Dock.Left);
+            };
         }
 
         private void InitializeComponent()

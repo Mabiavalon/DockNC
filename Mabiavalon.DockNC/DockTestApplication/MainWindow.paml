@@ -1,12 +1,7 @@
 ﻿<Window xmlns="https://github.com/avaloniaui" MinWidth="500" MinHeight="300" 
         xmlns:dock="clr-namespace:Mabiavalon.DockNC;assembly=Mabiavalon.DockNC">
   <Grid>
-    <dock:DockControl>
-      <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Test Top</TextBlock>
-      <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center">Test Bottom</TextBlock> 
-      <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">Test Left</TextBlock>
-      <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">Test Right</TextBlock> 
-      <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Test Center</TextBlock>
-    </dock:DockControl>
+    <dock:DockControl Name="Docker"/>
+    <Button Name="TestButton" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Test Docker"/>
   </Grid>
 </Window>
