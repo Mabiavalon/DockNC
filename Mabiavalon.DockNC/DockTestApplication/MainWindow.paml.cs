@@ -30,7 +30,14 @@ namespace DockTestApplication
 
                         var horBranch = new Branch {Orientation = Orientation.Horizontal};
                         horBranch.FirstItem = new Button {Content = "Left Button"};
-                        horBranch.SecondItem = new Button { Content = "Right Button"};
+                        var dockRightButton = new Button {Content = "Right Button"};
+                        dockRightButton.Click += (o1, args1) =>
+                        {
+                            var docker4 = this.FindControl<ContentControl>("Docker");
+                            var branch3 = new Branch {Orientation = Orientation.Horizontal, FirstItem = branch, SecondItem = new Button {Content = "I am docked to the right"} };
+                            docker4.Content = branch3;
+                        };
+                        horBranch.SecondItem = dockRightButton;
 
                         branch.FirstItem = horBranch;
                     };
