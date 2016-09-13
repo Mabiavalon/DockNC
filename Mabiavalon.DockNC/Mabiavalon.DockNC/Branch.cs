@@ -31,7 +31,7 @@ namespace Mabiavalon.DockNC
         static Branch()
         {
             PseudoClass(OrientationProperty, o => o == Avalonia.Controls.Orientation.Vertical, ":vertical");
-            PseudoClass(OrientationProperty, o => o == Avalonia.Controls.Orientation.Horizontal, ":horziontal");
+            PseudoClass(OrientationProperty, o => o == Avalonia.Controls.Orientation.Horizontal, ":horizontal");
         }
 
         public Orientation Orientation
