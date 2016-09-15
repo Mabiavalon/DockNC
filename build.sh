@@ -26,6 +26,7 @@ fi
 SCRIPT="build.cake"
 TARGET="Default"
 CONFIGURATION="Release"
+PLATFORM="Any CPU"
 VERBOSITY="verbose"
 DRYRUN=
 SHOW_VERSION=false
@@ -36,6 +37,7 @@ for i in "$@"; do
     case $1 in
         -s|--script) SCRIPT="$2"; shift ;;
         -t|--target) TARGET="$2"; shift ;;
+        -p|--platform) PLATFORM="$2"; shift ;;
         -c|--configuration) CONFIGURATION="$2"; shift ;;
         -v|--verbosity) VERBOSITY="$2"; shift ;;
         -d|--dryrun) DRYRUN="-dryrun" ;;
@@ -97,5 +99,5 @@ fi
 if $SHOW_VERSION; then
     exec mono "$CAKE_EXE" -version
 else
-    exec mono "$CAKE_EXE" $SCRIPT -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET $DRYRUN "${SCRIPT_ARGUMENTS[@]}"
+    exec mono "$CAKE_EXE" $SCRIPT -verbosity=$VERBOSITY -platform="$PLATFORM" -configuration="$CONFIGURATION" -target=$TARGET $DRYRUN "${SCRIPT_ARGUMENTS[@]}"
 fi

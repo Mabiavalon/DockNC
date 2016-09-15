@@ -14,6 +14,8 @@ and execute your Cake build script with the parameters you provide.
 The build script to execute.
 .PARAMETER Target
 The build script target to run.
+.PARAMETER Platform
+The build platform to use.
 .PARAMETER Configuration
 The build configuration to use.
 .PARAMETER Verbosity
@@ -37,6 +39,8 @@ http://cakebuild.net
 Param(
     [string]$Script = "build.cake",
     [string]$Target = "Default",
+    [ValidateSet("Any CPU", "x86", "x64", "Mono")]
+    [string]$Platform = "Any CPU",
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",
     [ValidateSet("Quiet", "Minimal", "Normal", "Verbose", "Diagnostic")]
@@ -180,5 +184,5 @@ if (!(Test-Path $CAKE_EXE)) {
 
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
+Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -platform=`"$Platform`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
 exit $LASTEXITCODE
