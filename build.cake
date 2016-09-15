@@ -86,9 +86,6 @@ if (isRunningOnAppVeyor)
 var artifactsDir = (DirectoryPath)Directory("./artifacts");
 var testResultsDir = artifactsDir.Combine("test-results");
 var nugetRoot = artifactsDir.Combine("nuget");
-var zipRoot = artifactsDir.Combine("zip");
-var docsRoot = artifactsDir.Combine("docs");
-var docsSiteRoot = docsRoot.Combine("_site");
 
 var dirSuffix = isPlatformAnyCPU ? configuration : platform + "/" + configuration;
 
@@ -226,9 +223,6 @@ Task("Clean")
     CleanDirectory(artifactsDir);
     CleanDirectory(testResultsDir);
     CleanDirectory(nugetRoot);
-    CleanDirectory(zipRoot);
-    CleanDirectory(docsRoot);
-    CleanDirectory(docsSiteRoot);
 });
 
 Task("Restore-NuGet-Packages")
@@ -285,13 +279,6 @@ Task("Build")
             settings.SetVerbosity(Verbosity.Minimal);
         });
     }
-});
-
-Task("Zip-Files")
-    .IsDependentOn("Create-Docs")
-    .Does(() =>
-{
-    Zip(docsSiteRoot, zipDocsSiteArtifacts);
 });
 
 Task("Create-NuGet-Packages")
@@ -377,14 +364,12 @@ Task("Publish-NuGet")
 ///////////////////////////////////////////////////////////////////////////////
 
 Task("Package")
-  .IsDependentOn("Zip-Files")
   .IsDependentOn("Create-NuGet-Packages");
 
 Task("Default")
   .IsDependentOn("Package");
 
 Task("AppVeyor")
-  .IsDependentOn("Zip-Files")
   .IsDependentOn("Publish-MyGet")
   .IsDependentOn("Publish-NuGet");
 
