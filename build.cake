@@ -283,7 +283,6 @@ Task("Build")
 });
 
 Task("Create-NuGet-Packages")
-    .IsDependentOn("Run-Unit-Tests")
     .Does(() =>
 {
     foreach(var nuspec in nuspecNuGetSettings)
