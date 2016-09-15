@@ -6,11 +6,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Mabiavalon.DockNC")]
 [assembly: AssemblyDescription("Docking Library for Avalonia")]
-#if !DEBUG
-[assembly: AssemblyConfiguration("Release")]
-#else
-[assembly: AssemblyConfiguration("Debug")]
-#endif
+[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mabiavalon Software Solutions Limited")]
 [assembly: AssemblyProduct("DockNC")]
 [assembly: AssemblyCopyright("Darnell Williams")]
