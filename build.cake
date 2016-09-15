@@ -92,8 +92,6 @@ var docsSiteRoot = docsRoot.Combine("_site");
 
 var dirSuffix = isPlatformAnyCPU ? configuration : platform + "/" + configuration;
 
-var zipDocsSiteArtifacts = zipRoot.CombineWithFilePath("XamlBehaviors-Docs-" + version + ".zip");
-
 var buildDirs = 
     GetDirectories("./src/**/bin/" + dirSuffix) + 
     GetDirectories("./src/**/obj/" + dirSuffix) + 
@@ -156,7 +154,7 @@ var nuspecNuGetBehaviors = new NuGetPackSettings()
     Authors = new [] { "Mabiavalon" },
     Owners = new [] { "Seeker1437" },
     LicenseUrl = new Uri("http://opensource.org/licenses/MIT"),
-    ProjectUrl = new Uri("https://github.com/XamlBehaviors/XamlBehaviors/"),
+    ProjectUrl = new Uri("https://github.com/Mabiavalon/DockNC/"),
     RequireLicenseAcceptance = false,
     Symbols = false,
     NoPackageAnalysis = true,
