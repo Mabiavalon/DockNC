@@ -373,8 +373,7 @@ Task("AppVeyor")
   .IsDependentOn("Publish-MyGet")
   .IsDependentOn("Publish-NuGet");
 
-Task("Travis")
-  .IsDependentOn("Run-Unit-Tests");
+Task("Travis");
 
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTE
