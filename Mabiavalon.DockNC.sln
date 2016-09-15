@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mabiavalon.DockNC", "Mabiavalon.DockNC\Mabiavalon.DockNC.csproj", "{60FB1E66-2691-453C-918C-38FE5BEB83A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mabiavalon.DockNC", "src\Mabiavalon.DockNC\Mabiavalon.DockNC.csproj", "{60FB1E66-2691-453C-918C-38FE5BEB83A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockTestApplication", "DockTestApplication\DockTestApplication.csproj", "{11CD7E4B-EC04-4715-A92D-56953B15E2B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockTestApplication", "src\DockTestApplication\DockTestApplication.csproj", "{11CD7E4B-EC04-4715-A92D-56953B15E2B5}"
 EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
