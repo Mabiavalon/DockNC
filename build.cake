@@ -283,6 +283,7 @@ Task("Build")
 });
 
 Task("Create-NuGet-Packages")
+    .IsDependentOn("Build")
     .Does(() =>
 {
     foreach(var nuspec in nuspecNuGetSettings)
@@ -373,7 +374,8 @@ Task("AppVeyor")
   .IsDependentOn("Publish-MyGet")
   .IsDependentOn("Publish-NuGet");
 
-Task("Travis");
+Task("Travis")
+  .IsDependentOn("Build");
 
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTE
