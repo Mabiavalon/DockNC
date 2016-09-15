@@ -72,23 +72,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Avalonia.HtmlRenderer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Avalonia.0.2.9-alpha4-pre-1\lib\portable-windows8+net45\Avalonia.HtmlRenderer.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.2.9-alpha4-pre-1\lib\portable-windows8+net45\Avalonia.HtmlRenderer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpDX, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.3.0.2\lib\net45\SharpDX.dll</HintPath>
+      <HintPath>..\..\packages\SharpDX.3.0.2\lib\net45\SharpDX.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpDX.Direct2D1, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.Direct2D1.3.0.2\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+      <HintPath>..\..\packages\SharpDX.Direct2D1.3.0.2\lib\net45\SharpDX.Direct2D1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SharpDX.DXGI, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.DXGI.3.0.2\lib\net45\SharpDX.DXGI.dll</HintPath>
+      <HintPath>..\..\packages\SharpDX.DXGI.3.0.2\lib\net45\SharpDX.DXGI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
+      <HintPath>..\..\packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -100,91 +100,91 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="SkiaSharp">
-      <HintPath>..\packages\SkiaSharp.1.54.0\lib\net45\SkiaSharp.dll</HintPath>
+      <HintPath>..\..\packages\SkiaSharp.1.54.0\lib\net45\SkiaSharp.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Interfaces">
-      <HintPath>..\packages\Rx-Interfaces.2.3.0-beta2\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <HintPath>..\..\packages\Rx-Interfaces.2.3.0-beta2\lib\net45\System.Reactive.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Core">
-      <HintPath>..\packages\Rx-Core.2.3.0-beta2\lib\net45\System.Reactive.Core.dll</HintPath>
+      <HintPath>..\..\packages\Rx-Core.2.3.0-beta2\lib\net45\System.Reactive.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Linq">
-      <HintPath>..\packages\Rx-Linq.2.3.0-beta2\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <HintPath>..\..\packages\Rx-Linq.2.3.0-beta2\lib\net45\System.Reactive.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.PlatformServices">
-      <HintPath>..\packages\Rx-PlatformServices.2.3\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <HintPath>..\..\packages\Rx-PlatformServices.2.3\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Windows.Threading">
-      <HintPath>..\packages\Rx-XAML.2.3.0-beta2\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <HintPath>..\..\packages\Rx-XAML.2.3.0-beta2\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
     <Reference Include="Serilog">
-      <HintPath>..\packages\Serilog.2.3.0-dev-00707\lib\net45\Serilog.dll</HintPath>
+      <HintPath>..\..\packages\Serilog.2.3.0-dev-00707\lib\net45\Serilog.dll</HintPath>
     </Reference>
     <Reference Include="Sprache">
-      <HintPath>..\packages\Sprache.2.1.1-develop-00011\lib\net40\Sprache.dll</HintPath>
+      <HintPath>..\..\packages\Sprache.2.1.1-develop-00011\lib\net40\Sprache.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Animation">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Animation.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Animation.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Base">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Base.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Base.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Controls">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Controls.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.DesignerSupport">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.DesignerSupport.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.DesignerSupport.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Diagnostics">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Diagnostics.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.DotNetFrameworkRuntime">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.DotNetFrameworkRuntime.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.DotNetFrameworkRuntime.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Input">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Input.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Input.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Interactivity">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Interactivity.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Layout">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Layout.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Layout.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Logging.Serilog">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Logging.Serilog.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Logging.Serilog.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Markup">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Markup.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Markup.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Markup.Xaml">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Markup.Xaml.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Markup.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.ReactiveUI">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.ReactiveUI.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.ReactiveUI.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.SceneGraph">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.SceneGraph.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.SceneGraph.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Styling">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Styling.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Styling.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Themes.Default">
-      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Themes.Default.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.0.4.1-build2104-alpha\lib\net45\Avalonia.Themes.Default.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Cairo">
-      <HintPath>..\packages\Avalonia.Cairo.0.4.1-build2104-alpha\lib\net45\Avalonia.Cairo.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.Cairo.0.4.1-build2104-alpha\lib\net45\Avalonia.Cairo.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Direct2D1">
-      <HintPath>..\packages\Avalonia.Direct2D1.0.4.1-build2104-alpha\lib\net45\Avalonia.Direct2D1.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.Direct2D1.0.4.1-build2104-alpha\lib\net45\Avalonia.Direct2D1.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Gtk">
-      <HintPath>..\packages\Avalonia.Gtk.0.4.1-build2104-alpha\lib\net45\Avalonia.Gtk.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.Gtk.0.4.1-build2104-alpha\lib\net45\Avalonia.Gtk.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Skia.Desktop">
-      <HintPath>..\packages\Avalonia.Skia.Desktop.0.4.1-build2104-alpha\lib\net45\Avalonia.Skia.Desktop.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.Skia.Desktop.0.4.1-build2104-alpha\lib\net45\Avalonia.Skia.Desktop.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Win32">
-      <HintPath>..\packages\Avalonia.Win32.0.4.1-build2104-alpha\lib\net45\Avalonia.Win32.dll</HintPath>
+      <HintPath>..\..\packages\Avalonia.Win32.0.4.1-build2104-alpha\lib\net45\Avalonia.Win32.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -217,5 +217,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\packages\SkiaSharp.1.54.0\build\net45\SkiaSharp.targets" Condition="Exists('..\packages\SkiaSharp.1.54.0\build\net45\SkiaSharp.targets')" />
+  <Import Project="..\..\packages\SkiaSharp.1.54.0\build\net45\SkiaSharp.targets" Condition="Exists('..\..\packages\SkiaSharp.1.54.0\build\net45\SkiaSharp.targets')" />
 </Project>
