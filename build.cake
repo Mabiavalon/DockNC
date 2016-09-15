@@ -167,7 +167,7 @@ var nuspecNuGetBehaviors = new NuGetPackSettings()
     {
         // Mabiavalon.DockNC
         new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + dirSuffix + "/Mabiavalon.DockNC.dll", Target = "lib/portable-windows8+net45" },
-        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + dirSuffix + "/Mabiavalon.DockNC.xml", Target = "lib/portable-windows8+net45" },
+        //new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + dirSuffix + "/Mabiavalon.DockNC.xml", Target = "lib/portable-windows8+net45" },
     },
     BasePath = Directory("./"),
     OutputDirectory = nugetRoot
