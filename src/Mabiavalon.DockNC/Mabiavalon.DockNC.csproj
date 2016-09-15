@@ -93,52 +93,49 @@
       <HintPath>..\packages\Sprache.2.1.1-develop-00011\lib\net40\Sprache.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Animation">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Animation.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Animation.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Base">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Base.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Base.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Controls">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Controls.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Controls.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.DesignerSupport">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.DesignerSupport.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.DesignerSupport.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Diagnostics">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="Avalonia.DotNetFrameworkRuntime">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.DotNetFrameworkRuntime.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Input">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Input.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Input.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Interactivity">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Layout">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Layout.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Layout.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Logging.Serilog">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Logging.Serilog.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Logging.Serilog.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Markup">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Markup.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Markup.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Markup.Xaml">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Markup.Xaml.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Markup.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.ReactiveUI">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.ReactiveUI.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.ReactiveUI.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.SceneGraph">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.SceneGraph.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.SceneGraph.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Styling">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Styling.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Styling.dll</HintPath>
     </Reference>
     <Reference Include="Avalonia.Themes.Default">
-      <HintPath>..\packages\Avalonia.0.4.1-build2063-alpha\lib\net45\Avalonia.Themes.Default.dll</HintPath>
+      <HintPath>..\packages\Avalonia.0.4.1-build2104-alpha\lib\portable-windows8+net45\Avalonia.Themes.Default.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
