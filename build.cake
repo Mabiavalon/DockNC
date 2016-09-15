@@ -36,8 +36,8 @@ var MasterBranch = "master";
 var ReleasePlatform = "Any CPU";
 var AssemblyInfoPath = File("./src/Mabiavalon.DockNC/Properties/AssemblyInfo.cs");
 var ReleaseConfiguration = "Release";
-var MSBuildSolution = "./Mabiavalon.DockNC.sln";
-var XBuildSolution = "./Mabiavalon.DockNC.sln";
+var MSBuildSolution = "./src/Mabiavalon.DockNC.sln";
+var XBuildSolution = "./src/Mabiavalon.DockNC.sln";
 
 ///////////////////////////////////////////////////////////////////////////////
 // PARAMETERS
