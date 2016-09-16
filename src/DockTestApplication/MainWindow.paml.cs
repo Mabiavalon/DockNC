@@ -9,51 +9,57 @@ namespace DockTestApplication
 {
     public class MainWindow : Window
     {
+        public int ItemIteration { get; set; }
+
         public MainWindow()
         {
             this.InitializeComponent();
             App.AttachDevTools(this);
-            var button = this.FindControl<Button>("TestButton");
-            button.Click += (sender, args) =>
+
+            ItemIteration = 1;
+
+            var docker = this.FindControl<DockControl>("Docker");
+
+
+            var topButton = this.FindControl<Button>("DockTop");
+            topButton.Click += (sender, args) =>
             {
-                var buttun = new Button();
-                buttun.Content = "TestButton Bottom";
-
-                buttun.Click += (o, eventArgs) =>
-                {
-                    var buttun2 = new Button();
-                    buttun2.Content = "TestButton In Top With Horizonal Branch";
-                    buttun2.Click += (sender1, routedEventArgs) =>
-                    {
-                        var docker3 = this.FindControl<ContentControl>("Docker");
-                        var branch = (docker3.Content as Branch);
-
-                        var horBranch = new Branch {Orientation = Orientation.Horizontal};
-                        horBranch.FirstItem = new Button {Content = "Left Button"};
-                        var dockRightButton = new Button {Content = "Right Button"};
-                        dockRightButton.Click += (o1, args1) =>
-                        {
-                            var docker4 = this.FindControl<ContentControl>("Docker");
-                            var branch3 = new Branch {Orientation = Orientation.Horizontal, FirstItem = branch, SecondItem = new Button {Content = "I am docked to the right"} };
-                            docker4.Content = branch3;
-                        };
-                        horBranch.SecondItem = dockRightButton;
-
-                        branch.FirstItem = horBranch;
-                    };
-
-                    var docker2 = this.FindControl<ContentControl>("Docker");
-                    (docker2.Content as Branch).SecondItem = buttun2;
-                };
-
-                var docker = this.FindControl<ContentControl>("Docker");
-                docker.Content = new Branch {FirstItem = buttun};
+                DockInternal(docker, DockTarget.Top);
             };
+                          
+            var bottomButton = this.FindControl<Button>("DockBottom");
+            bottomButton.Click += (sender, args) =>
+            {
+                DockInternal(docker, DockTarget.Bottom);
+            };
+
+            var leftButtun = this.FindControl<Button>("DockLeft");
+            leftButtun.Click += (sender, args) =>
+            {
+                DockInternal(docker, DockTarget.Left);
+            };
+
+            var rightButton = this.FindControl<Button>("DockRight");
+            rightButton.Click += (sender, args) =>
+            {
+                DockInternal(docker, DockTarget.Right);
+            };
+        }
+
+        private void DockInternal(DockControl docker, DockTarget dockTarget)
+        {
+            docker.Dock(new Button {Content = $"Item {ItemIteration}"}, dockTarget);
+            IterationItem();
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+        }
+
+        private void IterationItem()
+        {
+            ItemIteration++;
         }
     }
 }
