@@ -63,5 +63,12 @@ namespace Mabiavalon.DockNC
             get { return GetValue(SecondItemLengthProperty); }
             set { SetValue(SecondItemLengthProperty, value); }
         }
+
+        public bool BranchFilled => FirstItem != null && SecondItem != null;
+
+        public double GetFirstProportion()
+        {
+            return (1 / (FirstItemLength.Value + SecondItemLength.Value)) * FirstItemLength.Value;
+        }
     }
 }

@@ -8,31 +8,98 @@ namespace Mabiavalon.DockNC
 {
 	public class DockControl : ContentControl
 	{
+        //TODO: Edge Case: Deal with empty Branches
 	    public void Dock(object obj, DockTarget dockTarget)
 	    {
 	        if (Content == null)
 	        {
-	            switch (dockTarget)
+                var newBranch = new Branch();
+
+                SetOrientation(dockTarget, newBranch);
+
+	            if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
 	            {
-	                case DockTarget.Left:
-                        Content = new Branch { Orientation = Orientation.Horizontal, FirstItem = obj };
-                        break;
-	                case DockTarget.Bottom:
-                        Content = new Branch { Orientation = Orientation.Vertical, SecondItem = obj };
-                        break;
-	                case DockTarget.Right:
-                        Content = new Branch { Orientation = Orientation.Horizontal, SecondItem = obj };
-	                    break;
-                    case DockTarget.Top:
-                        Content = new Branch { Orientation = Orientation.Vertical, FirstItem = obj };
-	                    break;
-                    default:
-	                    throw new ArgumentOutOfRangeException(nameof(dockTarget), dockTarget, null);
+	                newBranch.FirstItem = obj;
+                    newBranch.FirstItemLength = new GridLength(1, GridUnitType.Star);
+                    newBranch.SecondItemLength = new GridLength(0, GridUnitType.Star);
 	            }
-	            return;             
+	            else
+	            {
+                    newBranch.SecondItem = obj;
+                    newBranch.SecondItemLength = new GridLength(1, GridUnitType.Star);
+                    newBranch.FirstItemLength = new GridLength(0, GridUnitType.Star);
+                }
+
+	            Content = newBranch;
+                return;
+            }
+
+	        var currentBranch = Content as Branch;
+
+	        if (currentBranch == null)
+	            throw new NotImplementedException("Support for wrapping pure content not supported yet.");
+
+	        if (currentBranch.BranchFilled)
+	        {
+	            var newBranch = new Branch();
+
+                SetOrientation(dockTarget, newBranch);
+
+                if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
+                {
+                    newBranch.FirstItem = obj;
+                    newBranch.SecondItem = currentBranch;
+                }
+                else
+                {
+                    newBranch.FirstItem = currentBranch;
+                    newBranch.SecondItem = obj;
+                }
+
+	            Content = newBranch;
 	        }
+	        else
+	        {
+	            var emptyItem = GetEmptyLeaf(currentBranch);
+	            
+	            var oldContent = emptyItem == BranchItem.First ? currentBranch.SecondItem : currentBranch.FirstItem;
 
+                // Possible solution to issues with visual parent?
+	            currentBranch.FirstItem = null;
+	            currentBranch.SecondItem = null;
 
-        }
+                SetOrientation(dockTarget, currentBranch);
+
+                if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
+                {
+                    currentBranch.FirstItem = obj;
+                    currentBranch.SecondItem = oldContent;
+                }
+                else
+                {
+                    currentBranch.FirstItem = oldContent;
+                    currentBranch.SecondItem = obj;
+                }
+
+	            currentBranch.FirstItemLength = new GridLength(0.49999, GridUnitType.Star);
+	            currentBranch.SecondItemLength = new GridLength(0.50001, GridUnitType.Star);
+	        }
+	    }
+
+	    private static BranchItem GetEmptyLeaf(Branch branch)
+	    {
+	        if (branch.BranchFilled)
+	            throw new ArgumentException("Branch is filled", nameof(branch));
+
+	        return branch.FirstItem == null ? BranchItem.First : BranchItem.Second;
+	    }
+
+	    private static void SetOrientation(DockTarget dockTarget, Branch newBranch)
+	    {
+	        if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Bottom)
+	            newBranch.Orientation = Orientation.Vertical;
+	        else
+	            newBranch.Orientation = Orientation.Horizontal;
+	    }
 	}
 }
