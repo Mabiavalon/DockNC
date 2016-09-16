@@ -76,7 +76,7 @@
     <Compile Include="DockTarget.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Themes\Branch.paml">
+    <EmbeddedResource Include="Themes\Controls.paml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

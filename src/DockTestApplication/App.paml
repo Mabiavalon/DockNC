@@ -2,6 +2,6 @@
   <Application.Styles>
     <StyleInclude Source="resm:Avalonia.Themes.Default.DefaultTheme.xaml?assembly=Avalonia.Themes.Default"/>
     <StyleInclude Source="resm:Avalonia.Themes.Default.Accents.BaseLight.xaml?assembly=Avalonia.Themes.Default"/>
-    <StyleInclude Source="resm:Mabiavalon.DockNC.Themes.Branch.paml?assembly=Mabiavalon.DockNC"/>
+    <StyleInclude Source="resm:Mabiavalon.DockNC.Themes.Controls.paml?assembly=Mabiavalon.DockNC"/>
   </Application.Styles>
 </Application>

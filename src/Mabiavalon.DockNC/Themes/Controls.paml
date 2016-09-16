@@ -37,4 +37,15 @@
       </ControlTemplate>
     </Setter>
   </Style>
+  <Style Selector="local|DockControl">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <ContentPresenter Name="PART_DockPresenter" Content="{TemplateBinding Content}"/>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
 </Styles>
