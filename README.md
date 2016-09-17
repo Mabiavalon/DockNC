@@ -5,6 +5,10 @@ Docking Library for Avalonia
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/DockNC/Lobby?utm_source=badge&utm_medium=badge)
 
+| NuGet | MyGet |
+| :---: | :---: |
+| Unavailable | [![MyGet](https://img.shields.io/myget/mabiavalon-ci/vpre/Mabiavalon.DockNC.svg)](https://www.myget.org/gallery/mabiavalon-ci)
+
 | Windows | OSX/Linux |
 | :---: |  :---: |
 | [![Build status](https://ci.appveyor.com/api/projects/status/35okrh54qkpi8cal/branch/master?svg=true)](https://ci.appveyor.com/project/DarnellWilliams/docknc/branch/master) | [![Build Status](https://travis-ci.org/Mabiavalon/DockNC.svg?branch=master)](https://travis-ci.org/Mabiavalon/DockNC) | 
