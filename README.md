@@ -11,7 +11,7 @@ Docking Library for Avalonia
 
 **Mabiavalon.DockNC** is a control docking library written for [Avalonia](https://github.com/AvaloniaUI/Avalonia).
 
-[![Example GIF Animation](https://puu.sh/rdyPD/863681ed37.gif)
+[![Example GIF Animation](https://puu.sh/rdyPD/863681ed37.gif)](https://puu.sh/rdyPD/863681ed37.gif)
 
 ### Build using IDE
 
