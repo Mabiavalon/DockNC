@@ -18,7 +18,7 @@ Docking Library for Avalonia
 * [Visual Studio Community 2015](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx) for `Windows` builds.
 * [MonoDevelop](http://www.monodevelop.com/) for `Linux` and `OSX` builds.
 
-Open `Mabiavalong.DockNC.sln` in selected IDE and run `Build` command.
+Open `Mabiavalon.DockNC.sln` in selected IDE and run `Build` command.
 
 ### Build on Windows using script
 
@@ -48,7 +48,7 @@ You can install the package like this:
 
 ### Package Dependencies
 
-* Avalonia
+* [Avalonia](https://github.com/AvaloniaUI/Avalonia)
 
 ### Package Sources
 
