@@ -70,5 +70,16 @@ namespace Mabiavalon.DockNC
         {
             return (1 / (FirstItemLength.Value + SecondItemLength.Value)) * FirstItemLength.Value;
         }
+
+		protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+		{
+			base.OnTemplateApplied(e);
+
+			FirstContentPresenter = e.NameScope.Find<ContentPresenter>("PART_FirstContentPresenter");
+			SecondContentPresenter = e.NameScope.Find<ContentPresenter>("PART_SecondContentPresenter");
+		}
+
+		internal ContentPresenter FirstContentPresenter { get; private set; }
+		internal ContentPresenter SecondContentPresenter { get; private set; }
     }
 }
