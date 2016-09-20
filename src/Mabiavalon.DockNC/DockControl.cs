@@ -40,53 +40,62 @@ namespace Mabiavalon.DockNC
 	            throw new NotImplementedException("Support for wrapping pure content not supported yet.");
 
 	        if (currentBranch.BranchFilled)
-	        {
-	            var newBranch = new Branch();
+			{
+				var newBranch = new Branch();
+				Branch(obj, dockTarget, currentBranch, newBranch);
 
-                SetOrientation(dockTarget, newBranch);
+				Content = newBranch;
+			}
+			else
+			{
+				var emptyItem = GetEmptyLeaf(currentBranch);
 
-                if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
-                {
-                    newBranch.FirstItem = obj;
-                    newBranch.SecondItem = currentBranch;
-                }
-                else
-                {
-                    newBranch.FirstItem = currentBranch;
-                    newBranch.SecondItem = obj;
-                }
+				var oldContent = emptyItem == BranchItem.First ? currentBranch.SecondItem : currentBranch.FirstItem;
 
-	            Content = newBranch;
-	        }
-	        else
-	        {
-	            var emptyItem = GetEmptyLeaf(currentBranch);
-	            
-	            var oldContent = emptyItem == BranchItem.First ? currentBranch.SecondItem : currentBranch.FirstItem;
+				// Possible solution to issues with visual parent?
+				currentBranch.FirstItem = null;
+				currentBranch.SecondItem = null;
 
-                // Possible solution to issues with visual parent?
-	            currentBranch.FirstItem = null;
-	            currentBranch.SecondItem = null;
+				Branch(obj, dockTarget, currentBranch, oldContent);
 
-                SetOrientation(dockTarget, currentBranch);
+				currentBranch.FirstItemLength = new GridLength(0.49999, GridUnitType.Star);
+				currentBranch.SecondItemLength = new GridLength(0.50001, GridUnitType.Star);
+			}
+		}
 
-                if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
-                {
-                    currentBranch.FirstItem = obj;
-                    currentBranch.SecondItem = oldContent;
-                }
-                else
-                {
-                    currentBranch.FirstItem = oldContent;
-                    currentBranch.SecondItem = obj;
-                }
+		static void Branch(object obj, DockTarget dockTarget, Branch currentBranch, object oldContent)
+		{
+			SetOrientation(dockTarget, currentBranch);
 
-	            currentBranch.FirstItemLength = new GridLength(0.49999, GridUnitType.Star);
-	            currentBranch.SecondItemLength = new GridLength(0.50001, GridUnitType.Star);
-	        }
-	    }
+			if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
+			{
+				currentBranch.FirstItem = obj;
+				currentBranch.SecondItem = oldContent;
+			}
+			else
+			{
+				currentBranch.FirstItem = oldContent;
+				currentBranch.SecondItem = obj;
+			}
+		}
 
-	    private static BranchItem GetEmptyLeaf(Branch branch)
+		static void Branch(object obj, DockTarget dockTarget, Branch currentBranch, Branch newBranch)
+		{
+			SetOrientation(dockTarget, newBranch);
+
+			if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
+			{
+				newBranch.FirstItem = obj;
+				newBranch.SecondItem = currentBranch;
+			}
+			else
+			{
+				newBranch.FirstItem = currentBranch;
+				newBranch.SecondItem = obj;
+			}
+		}
+
+		private static BranchItem GetEmptyLeaf(Branch branch)
 	    {
 	        if (branch.BranchFilled)
 	            throw new ArgumentException("Branch is filled", nameof(branch));
