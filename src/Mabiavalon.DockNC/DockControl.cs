@@ -107,7 +107,7 @@ namespace Mabiavalon.DockNC
 				return;
 			}
 
-			var targetBranch = targetBranchContent as Branch;
+			var targetBranch = (Branch) targetBranchContent;
 
 			if (targetBranch.BranchFilled)
 			{
