@@ -20,14 +20,10 @@ namespace Mabiavalon.DockNC
 	            if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
 	            {
 	                newBranch.FirstItem = obj;
-                    newBranch.FirstItemLength = new GridLength(1, GridUnitType.Star);
-                    newBranch.SecondItemLength = new GridLength(0, GridUnitType.Star);
 	            }
 	            else
 	            {
                     newBranch.SecondItem = obj;
-                    newBranch.SecondItemLength = new GridLength(1, GridUnitType.Star);
-                    newBranch.FirstItemLength = new GridLength(0, GridUnitType.Star);
                 }
 
 	            Content = newBranch;
@@ -89,14 +85,10 @@ namespace Mabiavalon.DockNC
 				if (dockTarget == DockTarget.Top || dockTarget == DockTarget.Left)
 				{
 					newBranch.FirstItem = obj;
-					newBranch.FirstItemLength = new GridLength(1, GridUnitType.Star);
-					newBranch.SecondItemLength = new GridLength(0, GridUnitType.Star);
 				}
 				else
 				{
 					newBranch.SecondItem = obj;
-					newBranch.SecondItemLength = new GridLength(1, GridUnitType.Star);
-					newBranch.FirstItemLength = new GridLength(0, GridUnitType.Star);
 				}
 
 				if (branchItem == BranchItem.First)
