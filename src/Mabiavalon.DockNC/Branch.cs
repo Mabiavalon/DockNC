@@ -32,6 +32,7 @@ namespace Mabiavalon.DockNC
         {
             PseudoClass(OrientationProperty, o => o == Avalonia.Controls.Orientation.Vertical, ":vertical");
             PseudoClass(OrientationProperty, o => o == Avalonia.Controls.Orientation.Horizontal, ":horizontal");
+			AffectsMeasure(FirstItemProperty, SecondItemProperty);
         }
 
         public Orientation Orientation
@@ -81,5 +82,70 @@ namespace Mabiavalon.DockNC
 
 		internal ContentPresenter FirstContentPresenter { get; private set; }
 		internal ContentPresenter SecondContentPresenter { get; private set; }
+
+		protected override Size MeasureOverride(Size availableSize)
+		{
+			bool firstContentRequiresOverride = false;
+			bool secondContentRequiresOverride = false;
+
+			if (FirstItem != null)
+			{
+				var firstChildControl = FirstItem as Control;
+
+				// Might be a POCO with a DataTemplate
+				if (firstChildControl == null)
+				{
+					firstChildControl = FirstContentPresenter.Child as Control;
+
+					if (firstChildControl == null)
+						throw new Exception($"Unable to find DataTemplate for 'FirstItem''s value {FirstItem}");
+				}
+
+				firstContentRequiresOverride |= !firstChildControl.IsVisible;
+			}
+			else
+				firstContentRequiresOverride = true;
+
+			if (SecondItem != null)
+			{
+				var secondChildControl = SecondItem as Control;
+
+				// Might be a POCO with a DataTemplate
+				if (secondChildControl == null)
+				{
+					secondChildControl = SecondContentPresenter.Child as Control;
+
+					if (secondChildControl == null)
+						throw new Exception($"Unable to find DataTemplate for 'SecondItem''s value {SecondItem}");
+				}
+
+				secondContentRequiresOverride |= !secondChildControl.IsVisible;
+			}
+			else
+				secondContentRequiresOverride = true;
+
+			if (firstContentRequiresOverride && secondContentRequiresOverride)
+			{
+				return this.Orientation == Orientation.Horizontal ? new Size(this.Width, 0) : new Size(0, this.Height);
+
+			}
+
+			if (firstContentRequiresOverride)
+			{
+				var proportion = 0;
+
+				FirstItemLength = new GridLength(proportion, GridUnitType.Star);
+				SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+			}
+			else if (secondContentRequiresOverride)
+			{
+				var proportion = 1;
+
+				FirstItemLength = new GridLength(proportion, GridUnitType.Star);
+				SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+			}
+
+			return base.MeasureOverride(availableSize);
+		}
     }
 }
