@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml;
+using Avalonia.VisualTree;
 using Mabiavalon.DockNC;
 
 namespace DockTestApplication
@@ -47,6 +49,7 @@ namespace DockTestApplication
             var button = CreateActionButton();
 
             _docker.Dock(button, RandomEnum<DockTarget>(), branch, branchItem);
+            IterationItem();
         }
 
         private Button CreateActionButton()
@@ -61,9 +64,9 @@ namespace DockTestApplication
         {
             var button = (Button) sender;
 
-            if (button == null) return;
+            var parentBranch = button?.GetVisualAncestors().OfType<Branch>().FirstOrDefault();
 
-            var parentBranch = button.GetLogicalParent<Branch>();
+            if (parentBranch == null) return;
 
             // Assumed for now, I see this not working as well as I think.
             var branchItem = parentBranch.FirstItem == button ? BranchItem.First : BranchItem.Second;
