@@ -1,13 +1,11 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Diagnostics;
-using Avalonia.Themes.Default;
 using Avalonia.Markup.Xaml;
 
 namespace DockTestApplication
 {
-    class App : Application
+    internal class App : Application
     {
         public override void Initialize()
         {
@@ -15,7 +13,7 @@ namespace DockTestApplication
             base.Initialize();
         }
 
-		static void Main(string[] args) => AppBuilder.Configure<App>().UsePlatformDetect().Start<MainWindow>();
+        private static void Main(string[] args) => AppBuilder.Configure<App>().UsePlatformDetect().Start<MainWindow>();
 
         public static void AttachDevTools(Window window)
         {

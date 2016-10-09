@@ -1,12 +1,11 @@
-﻿using System;
-namespace Mabiavalon.DockNC
+﻿namespace Mabiavalon.DockNC
 {
-	public enum DockTarget
-	{
-		Left,
-		Top,
-		Right,
-		Bottom,
-		// Center
-	}
+    public enum DockTarget
+    {
+        Left,
+        Top,
+        Right,
+        Bottom
+        // Center
+    }
 }
