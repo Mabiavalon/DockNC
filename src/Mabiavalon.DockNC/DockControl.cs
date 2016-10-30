@@ -1,12 +1,13 @@
 ﻿using System;
 using Avalonia.Controls;
+using Avalonia;
 
 namespace Mabiavalon.DockNC
 {
     public class DockControl : ContentControl
     {
         //TODO: Edge Case: Deal with empty Branches
-        public void Dock(object obj, DockTarget dockTarget)
+        public void Dock(Visual obj, DockTarget dockTarget)
         {
             if (Content == null)
             {
@@ -59,7 +60,7 @@ namespace Mabiavalon.DockNC
             }
         }
 
-        public void Dock(object obj, DockTarget dockTarget, Branch branch, BranchItem branchItem)
+        public void Dock(Visual obj, DockTarget dockTarget, Branch branch, BranchItem branchItem)
         {
             var targetBranchContent = branchItem == BranchItem.First ? branch.FirstItem : branch.SecondItem;
 
@@ -129,7 +130,7 @@ namespace Mabiavalon.DockNC
             }
         }
 
-        private static void Branch(object obj, DockTarget dockTarget, Branch currentBranch, object oldContent)
+        private static void Branch(Visual obj, DockTarget dockTarget, Branch currentBranch, Visual oldContent)
         {
             SetOrientation(dockTarget, currentBranch);
 
@@ -145,7 +146,7 @@ namespace Mabiavalon.DockNC
             }
         }
 
-        private static void Branch(object obj, DockTarget dockTarget, Branch currentBranch, Branch newBranch)
+        private static void Branch(Visual obj, DockTarget dockTarget, Branch currentBranch, Branch newBranch)
         {
             SetOrientation(dockTarget, newBranch);
 
