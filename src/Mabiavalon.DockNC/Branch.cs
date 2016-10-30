@@ -16,11 +16,11 @@
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>("Orientation");
 
-        public static readonly StyledProperty<Visual> FirstItemProperty =
-            AvaloniaProperty.Register<Branch, Visual>(nameof(FirstItem));
+        public static readonly StyledProperty<object> FirstItemProperty =
+            AvaloniaProperty.Register<Branch, object>("FirstItem");
 
-        public static readonly StyledProperty<Visual> SecondItemProperty =
-            AvaloniaProperty.Register<Branch, Visual>(nameof(SecondItem));
+        public static readonly StyledProperty<object> SecondItemProperty =
+            AvaloniaProperty.Register<Branch, object>("SecondItem");
 
         public static readonly StyledProperty<GridLength> FirstItemLengthProperty =
             AvaloniaProperty.Register<Branch, GridLength>("FirstItemLength", new GridLength(0.49999, GridUnitType.Star));
@@ -74,13 +74,13 @@
             set { SetValue(OrientationProperty, value); }
         }
 
-        public Visual FirstItem
+        public object FirstItem
         {
             get { return GetValue(FirstItemProperty); }
             set { SetValue(FirstItemProperty, value); }
         }
 
-        public Visual SecondItem
+        public object SecondItem
         {
             get { return GetValue(SecondItemProperty); }
             set { SetValue(SecondItemProperty, value); }
