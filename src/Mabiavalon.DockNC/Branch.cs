@@ -6,13 +6,11 @@
     using Avalonia.Controls.Primitives;
     using System;
     using System.Diagnostics;
-    using System.Reactive.Linq;
 
     public class Branch : TemplatedControl
     {
         private IDisposable _firstItemVisibilitDisposable;
         private IDisposable _secondItemVisibilityDisposable; 
-
 
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>("Orientation");
@@ -142,12 +140,12 @@
 
             if (FirstItem != null)
             {
-                var firstChildControl = FirstItem as Control;
+                var firstChildControl = FirstItem as Visual;
 
                 // Might be a POCO with a DataTemplate
                 if (firstChildControl == null)
                 {
-                    firstChildControl = FirstContentPresenter.Child as Control;
+                    firstChildControl = FirstContentPresenter.Child as Visual;
 
                     if (firstChildControl == null)
                         throw new Exception($"Unable to find DataTemplate for 'FirstItem''s value {FirstItem}");
@@ -160,12 +158,12 @@
 
             if (SecondItem != null)
             {
-                var secondChildControl = SecondItem as Control;
+                var secondChildControl = SecondItem as Visual;
 
                 // Might be a POCO with a DataTemplate
                 if (secondChildControl == null)
                 {
-                    secondChildControl = SecondContentPresenter.Child as Control;
+                    secondChildControl = SecondContentPresenter.Child as Visual;
 
                     if (secondChildControl == null)
                         throw new Exception($"Unable to find DataTemplate for 'SecondItem''s value {SecondItem}");
@@ -181,20 +179,19 @@
                 return Orientation == Orientation.Horizontal ? new Size(Width, 0) : new Size(0, Height);
             }
 
+            var proportion = GetFirstProportion();
+
             if (firstContentRequiresOverride)
             {
-                var proportion = 0;
-
-                FirstItemLength = new GridLength(proportion, GridUnitType.Star);
-                SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+                proportion = 0;
             }
             else if (secondContentRequiresOverride)
             {
-                var proportion = 1;
-
-                FirstItemLength = new GridLength(proportion, GridUnitType.Star);
-                SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+                proportion = 1;
             }
+
+            FirstItemLength = new GridLength(proportion, GridUnitType.Star);
+            SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
 
             return base.MeasureOverride(availableSize);
         }
