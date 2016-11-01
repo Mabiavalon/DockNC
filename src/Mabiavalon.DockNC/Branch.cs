@@ -1,4 +1,4 @@
-﻿namespace Mabiavalon.DockNC
+﻿    namespace Mabiavalon.DockNC
 {
     using Avalonia;
     using Avalonia.Controls;
@@ -14,19 +14,19 @@
         private IDisposable _secondItemVisibilityDisposable;
 
         public static readonly StyledProperty<Orientation> OrientationProperty =
-            AvaloniaProperty.Register<Branch, Orientation>("Orientation");
+            AvaloniaProperty.Register<Branch, Orientation>(nameof(Orientation));
 
         public static readonly StyledProperty<object> FirstItemProperty =
-            AvaloniaProperty.Register<Branch, object>("FirstItem");
+            AvaloniaProperty.Register<Branch, object>(nameof(FirstItem));
 
         public static readonly StyledProperty<object> SecondItemProperty =
-            AvaloniaProperty.Register<Branch, object>("SecondItem");
+            AvaloniaProperty.Register<Branch, object>(nameof(SecondItem));
 
         public static readonly StyledProperty<GridLength> FirstItemLengthProperty =
-            AvaloniaProperty.Register<Branch, GridLength>("FirstItemLength", new GridLength(0.49999, GridUnitType.Star));
+            AvaloniaProperty.Register<Branch, GridLength>(nameof(FirstItemLength), new GridLength(0.49999, GridUnitType.Star));
 
         public static readonly StyledProperty<GridLength> SecondItemLengthProperty =
-            AvaloniaProperty.Register<Branch, GridLength>("SecondItemLength", new GridLength(0.50001, GridUnitType.Star));
+            AvaloniaProperty.Register<Branch, GridLength>(nameof(SecondItemLength), new GridLength(0.50001, GridUnitType.Star));
 
         static Branch()
         {
