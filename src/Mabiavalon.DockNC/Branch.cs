@@ -113,8 +113,6 @@
 
             RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
-
-
         }
 
         protected override Size MeasureOverride(Size availableSize)
