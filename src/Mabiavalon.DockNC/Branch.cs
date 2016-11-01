@@ -10,8 +10,9 @@
 
     public class Branch : TemplatedControl
     {
-        private GridLength firstOverriden;
-        private GridLength secondOverriden;
+        private IDisposable _firstItemVisibilitDisposable;
+        private IDisposable _secondItemVisibilityDisposable; 
+
 
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>("Orientation");
@@ -41,16 +42,27 @@
             {
                 if(o.OldValue != null)
                 {
-
+                    _firstItemVisibilitDisposable?.Dispose();
                 }
 
                 if (o.NewValue != null)
                 {
-                    (o.NewValue as Visual).GetObservable(Visual.IsVisibleProperty).Subscribe(visible =>
+                    FirstContentPresenter.UpdateChild();
+
+                    var newFirstItemVisual = (o.NewValue as Visual) ?? (FirstContentPresenter.Child as Visual);
+
+                    if (newFirstItemVisual != null)
                     {
-                        Debug.WriteLine("IsVisibleDetected");
-                        InvalidateMeasure();
-                    });
+                        _firstItemVisibilitDisposable = newFirstItemVisual.GetObservable(IsVisibleProperty).Subscribe(visible =>
+                        {
+                            Debug.WriteLine("IsVisible Detected");
+                            InvalidateMeasure();
+                        });
+                    }
+                    else
+                    {
+                        Debug.WriteLine("No visibility observable found");
+                    }
                 }
             });
 
@@ -58,12 +70,19 @@
             {
                 if (o.OldValue != null)
                 {
-
+                    _secondItemVisibilityDisposable?.Dispose();
                 }
 
-                if (o.NewValue != null)
+                SecondContentPresenter.UpdateChild();
+
+                var newSecondItemVisual = (o.NewValue as Visual) ?? (SecondContentPresenter.Child as Visual);
+
+                if (newSecondItemVisual != null)
                 {
-                    (o.NewValue as Visual).GetObservable(Visual.IsVisibleProperty).Subscribe(visible => InvalidateMeasure());
+                    _secondItemVisibilityDisposable = newSecondItemVisual.GetObservable(IsVisibleProperty).Subscribe(visible =>
+                    {
+                        InvalidateMeasure();
+                    });
                 }
             });
         }
