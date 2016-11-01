@@ -1,13 +1,18 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.Presenters;
-using Avalonia.Controls.Primitives;
-
-namespace Mabiavalon.DockNC
+﻿namespace Mabiavalon.DockNC
 {
+    using Avalonia;
+    using Avalonia.Controls;
+    using Avalonia.Controls.Presenters;
+    using Avalonia.Controls.Primitives;
+    using System;
+    using System.Diagnostics;
+    using System.Reactive.Linq;
+
     public class Branch : TemplatedControl
     {
+        private GridLength firstOverriden;
+        private GridLength secondOverriden;
+
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>("Orientation");
 
@@ -27,7 +32,40 @@ namespace Mabiavalon.DockNC
         {
             PseudoClass(OrientationProperty, o => o == Orientation.Vertical, ":vertical");
             PseudoClass(OrientationProperty, o => o == Orientation.Horizontal, ":horizontal");
-            AffectsMeasure(FirstItemProperty, SecondItemProperty);
+            AffectsMeasure(FirstItemProperty, SecondItemProperty, DataContextProperty);            
+        }
+
+        public Branch()
+        {
+            FirstItemProperty.Changed.Subscribe(o =>
+            {
+                if(o.OldValue != null)
+                {
+
+                }
+
+                if (o.NewValue != null)
+                {
+                    (o.NewValue as Visual).GetObservable(Visual.IsVisibleProperty).Subscribe(visible =>
+                    {
+                        Debug.WriteLine("IsVisibleDetected");
+                        InvalidateMeasure();
+                    });
+                }
+            });
+
+            SecondItemProperty.Changed.Subscribe(o =>
+            {
+                if (o.OldValue != null)
+                {
+
+                }
+
+                if (o.NewValue != null)
+                {
+                    (o.NewValue as Visual).GetObservable(Visual.IsVisibleProperty).Subscribe(visible => InvalidateMeasure());
+                }
+            });
         }
 
         public Orientation Orientation
