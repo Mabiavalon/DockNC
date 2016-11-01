@@ -38,31 +38,30 @@
         {
             FirstItemProperty.Changed.Subscribe(o =>
             {
-                if(o.OldValue != null)
+                if (o.OldValue != null)
                 {
                     _firstItemVisibilitDisposable?.Dispose();
                 }
 
-                if (o.NewValue != null)
+                if (o.NewValue == null) return;
+                FirstContentPresenter.UpdateChild();
+
+                var newFirstItemVisual = FirstContentPresenter.Child as Visual;
+
+                if (newFirstItemVisual != null)
                 {
-                    FirstContentPresenter.UpdateChild();
-
-                    var newFirstItemVisual = (o.NewValue as Visual) ?? (FirstContentPresenter.Child as Visual);
-
-                    if (newFirstItemVisual != null)
+                    _firstItemVisibilitDisposable = newFirstItemVisual.GetObservable(IsVisibleProperty).Subscribe(visible =>
                     {
-                        _firstItemVisibilitDisposable = newFirstItemVisual.GetObservable(IsVisibleProperty).Subscribe(visible =>
-                        {
-                            Debug.WriteLine("IsVisible Detected");
-                            InvalidateMeasure();
-                        });
-                    }
-                    else
-                    {
-                        Debug.WriteLine("No visibility observable found");
-                    }
+                        Debug.WriteLine("IsVisible Detected");
+                        InvalidateMeasure();
+                    });
+                }
+                else
+                {
+                    Debug.WriteLine("No visibility observable found");
                 }
             });
+
 
             SecondItemProperty.Changed.Subscribe(o =>
             {
@@ -71,9 +70,10 @@
                     _secondItemVisibilityDisposable?.Dispose();
                 }
 
+                if (o.NewValue == null) return;
                 SecondContentPresenter.UpdateChild();
 
-                var newSecondItemVisual = (o.NewValue as Visual) ?? (SecondContentPresenter.Child as Visual);
+                var newSecondItemVisual = SecondContentPresenter.Child as Visual;
 
                 if (newSecondItemVisual != null)
                 {
@@ -84,6 +84,8 @@
                 }
             });
         }
+
+
 
         public Orientation Orientation
         {
