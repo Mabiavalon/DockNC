@@ -1,5 +1,5 @@
-﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:local="clr-namespace:Mabiavalon.DockNC;assembly=Mabiavalon.DockNC">
-    <Style Selector="local|Branch:vertical">
+﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:local="clr-namespace:Mabiavalon.DockNC;assembly=Mabiavalon.DockNC" xmlns:dock="clr-namespace:Mabiavalon.DockNC.Docking;assembly=Mabiavalon.DockNC">
+    <Style Selector="dock|Branch:vertical">
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Background="{TemplateBinding Background}"
@@ -19,7 +19,7 @@
             </ControlTemplate>
         </Setter>
     </Style>
-  <Style Selector="local|Branch:horizontal">
+  <Style Selector="dock|Branch:horizontal">
     <Setter Property="Template">
       <ControlTemplate>
         <Border Background="{TemplateBinding Background}"
