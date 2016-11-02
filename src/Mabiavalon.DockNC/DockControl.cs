@@ -49,9 +49,7 @@ namespace Mabiavalon.DockNC
 
                 // Possible solution to issues with visual parent?
                 currentBranch.FirstItem = null;
-                currentBranch.FirstContentPresenter.UpdateChild();
                 currentBranch.SecondItem = null;
-                currentBranch.SecondContentPresenter.UpdateChild();
 
                 Branch(obj, dockTarget, currentBranch, oldContent);
 
@@ -69,12 +67,10 @@ namespace Mabiavalon.DockNC
                 if (branchItem == BranchItem.First)
                 {
                     branch.FirstItem = null;
-                    branch.FirstContentPresenter.UpdateChild();
                 }
                 else
                 {
                     branch.SecondItem = null;
-                    branch.SecondContentPresenter.UpdateChild();
                 }
 
                 var newBranch = new Branch();
