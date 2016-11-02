@@ -24,6 +24,9 @@
         public static readonly StyledProperty<object> SecondItemProperty =
             AvaloniaProperty.Register<Branch, object>(nameof(SecondItem));
 
+        public static readonly StyledProperty<bool> GridSplitterVisibleProperty =
+            AvaloniaProperty.Register<Branch, bool>(nameof(GridSplitterVisible));
+
         public static readonly StyledProperty<GridLength> FirstItemLengthProperty =
             AvaloniaProperty.Register<Branch, GridLength>(nameof(FirstItemLength), new GridLength(0.49999, GridUnitType.Star));
 
@@ -90,6 +93,12 @@
         {
             get { return GetValue(SecondItemLengthProperty); }
             set { SetValue(SecondItemLengthProperty, value); }
+        }
+
+        public bool GridSplitterVisible
+        {
+            get { return GetValue(GridSplitterVisibleProperty); }
+            set { SetValue(GridSplitterVisibleProperty, value); }
         }
 
         public bool BranchFilled => FirstItem != null && SecondItem != null;
@@ -184,6 +193,12 @@
 
                     FirstItemLength = new GridLength(proportion, GridUnitType.Star);
                     SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+
+                    GridSplitterVisible = true;
+                }
+                else
+                {
+                    GridSplitterVisible = false;
                 }
 
                 if (!firstItemVisible && !secondItemVisible)
