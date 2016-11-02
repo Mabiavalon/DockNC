@@ -1,11 +1,11 @@
-﻿namespace Mabiavalon.DockNC
-{
-    using Avalonia;
-    using Avalonia.Controls;
-    using Avalonia.Controls.Presenters;
-    using Avalonia.Controls.Primitives;
-    using System;
+﻿using System;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
+using Avalonia.Controls.Primitives;
 
+namespace Mabiavalon.DockNC.Docking
+{
     public class Branch : TemplatedControl
     {
         private IDisposable _firstItemVisibilitDisposable;

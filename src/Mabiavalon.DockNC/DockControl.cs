@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia.Controls;
+using Mabiavalon.DockNC.Docking;
 
 namespace Mabiavalon.DockNC
 {

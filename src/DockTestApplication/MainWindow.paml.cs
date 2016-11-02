@@ -5,6 +5,7 @@ using Avalonia.LogicalTree;
 using Avalonia.Markup.Xaml;
 using Avalonia.VisualTree;
 using Mabiavalon.DockNC;
+using Mabiavalon.DockNC.Docking;
 
 namespace DockTestApplication
 {

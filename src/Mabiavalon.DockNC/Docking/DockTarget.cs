@@ -1,4 +1,4 @@
-﻿namespace Mabiavalon.DockNC
+﻿namespace Mabiavalon.DockNC.Docking
 {
     public enum DockTarget
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mabiavalon.DockNC
+namespace Mabiavalon.DockNC.Docking
 {
     public class BranchAccessor
     {
