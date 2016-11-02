@@ -1,4 +1,4 @@
-﻿    namespace Mabiavalon.DockNC
+﻿namespace Mabiavalon.DockNC
 {
     using Avalonia;
     using Avalonia.Controls;
@@ -119,6 +119,41 @@
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
         }
 
+        private void InvalidateVisibilityChanges(bool firstItemVisible, bool secondItemVisible)
+        {
+            if (firstItemVisible != _firstItemLastVisibility)
+            {
+                if (firstItemVisible)
+                {
+                    FirstItemLength = _firstItemLastGridLength;
+                }
+                else
+                {
+                    _firstItemLastGridLength = FirstItemLength;
+
+                    FirstItemLength = new GridLength();
+                }
+
+                _firstItemLastVisibility = firstItemVisible;
+            }
+
+            if (secondItemVisible != _secondItemLastVisibility)
+            {
+                if (secondItemVisible)
+                {
+                    SecondItemLength = _secondItemLastGridLength;
+                }
+                else
+                {
+                    _secondItemLastGridLength = SecondItemLength;
+
+                    SecondItemLength = new GridLength();
+                }
+
+                _secondItemLastVisibility = secondItemVisible;
+            }
+        }
+
         protected override Size MeasureOverride(Size availableSize)
         {
             var firstItemVisible = false;
@@ -138,28 +173,16 @@
             {
                 var secondChildControl = SecondContentPresenter?.Child as Visual;
 
-                if(secondChildControl != null)
+                if (secondChildControl != null)
                 {
                     secondItemVisible = secondChildControl.IsVisible;
                 }
             }
 
+            InvalidateVisibilityChanges(firstItemVisible, secondItemVisible);
+
             if (firstItemVisible && secondItemVisible)
             {
-                if(firstItemVisible != _firstItemLastVisibility)
-                {
-                    FirstItemLength = _firstItemLastGridLength;
-
-                    _firstItemLastVisibility = firstItemVisible;
-                }
-
-                if(secondItemVisible != _secondItemLastVisibility)
-                {
-                    SecondItemLength = _secondItemLastGridLength;
-
-                    _secondItemLastVisibility = secondItemVisible;
-                }
-
                 var proportion = GetFirstProportion();
 
                 FirstItemLength = new GridLength(proportion, GridUnitType.Star);
@@ -167,59 +190,7 @@
             }
             else if (!firstItemVisible && !secondItemVisible)
             {
-                if (firstItemVisible != _firstItemLastVisibility)
-                {
-                    _firstItemLastGridLength = FirstItemLength;
-
-                    FirstItemLength = new GridLength();
-                }
-
-                _firstItemLastVisibility = firstItemVisible;
-
-                if (secondItemVisible != _secondItemLastVisibility)
-                {
-                    _secondItemLastGridLength = SecondItemLength;
-
-                    SecondItemLength = new GridLength();
-                }
-
-                _secondItemLastVisibility = secondItemVisible;
-
                 return Orientation == Orientation.Horizontal ? new Size(Width, 0) : new Size(0, Height);
-            }
-            else
-            {
-                if (firstItemVisible != _firstItemLastVisibility)
-                {
-                    if (firstItemVisible)
-                    {
-                        FirstItemLength = _firstItemLastGridLength;
-                    }
-                    else
-                    {
-                        _firstItemLastGridLength = FirstItemLength;
-
-                        FirstItemLength = new GridLength();
-                    }
-
-                    _firstItemLastVisibility = firstItemVisible;
-                }
-
-                if (secondItemVisible != _secondItemLastVisibility)
-                {
-                    if (secondItemVisible)
-                    {
-                        SecondItemLength = _secondItemLastGridLength;
-                    }
-                    else
-                    {
-                        _secondItemLastGridLength = SecondItemLength;
-
-                        SecondItemLength = new GridLength();
-                    }
-
-                    _secondItemLastVisibility = secondItemVisible;
-                }
             }
 
             return base.MeasureOverride(availableSize);
