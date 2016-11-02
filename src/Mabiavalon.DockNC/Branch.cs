@@ -5,8 +5,6 @@
     using Avalonia.Controls.Presenters;
     using Avalonia.Controls.Primitives;
     using System;
-    using System.Diagnostics;
-    using Avalonia.LogicalTree;
 
     public class Branch : TemplatedControl
     {
@@ -51,13 +49,9 @@
             {
                 disposable = newVisual.GetObservable(IsVisibleProperty).Subscribe(visible =>
                 {
-                    Debug.WriteLine("IsVisible Detected");
+                    InvalidateVisibilityChanges();
                     InvalidateMeasure();
                 });
-            }
-            else
-            {
-                Debug.WriteLine("No visibility observable found");
             }
         }
 
@@ -119,42 +113,7 @@
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
         }
 
-        private void InvalidateVisibilityChanges(bool firstItemVisible, bool secondItemVisible)
-        {
-            if (firstItemVisible != _firstItemLastVisibility)
-            {
-                if (firstItemVisible)
-                {
-                    FirstItemLength = _firstItemLastGridLength;
-                }
-                else
-                {
-                    _firstItemLastGridLength = FirstItemLength;
-
-                    FirstItemLength = new GridLength();
-                }
-
-                _firstItemLastVisibility = firstItemVisible;
-            }
-
-            if (secondItemVisible != _secondItemLastVisibility)
-            {
-                if (secondItemVisible)
-                {
-                    SecondItemLength = _secondItemLastGridLength;
-                }
-                else
-                {
-                    _secondItemLastGridLength = SecondItemLength;
-
-                    SecondItemLength = new GridLength();
-                }
-
-                _secondItemLastVisibility = secondItemVisible;
-            }
-        }
-
-        protected override Size MeasureOverride(Size availableSize)
+        private void InvalidateVisibilityChanges()
         {
             var firstItemVisible = false;
             var secondItemVisible = false;
@@ -179,21 +138,63 @@
                 }
             }
 
-            InvalidateVisibilityChanges(firstItemVisible, secondItemVisible);
+            bool hasChanged = false;
 
-            if (firstItemVisible && secondItemVisible)
+            if (firstItemVisible != _firstItemLastVisibility)
             {
-                var proportion = GetFirstProportion();
+                if (firstItemVisible)
+                {
+                    FirstItemLength = _firstItemLastGridLength;
+                }
+                else
+                {
+                    _firstItemLastGridLength = FirstItemLength;
 
-                FirstItemLength = new GridLength(proportion, GridUnitType.Star);
-                SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+                    FirstItemLength = new GridLength();
+                }
+
+                _firstItemLastVisibility = firstItemVisible;
+
+                hasChanged = true;
             }
-            else if (!firstItemVisible && !secondItemVisible)
+
+            if (secondItemVisible != _secondItemLastVisibility)
             {
-                return Orientation == Orientation.Horizontal ? new Size(Width, 0) : new Size(0, Height);
+                if (secondItemVisible)
+                {
+                    SecondItemLength = _secondItemLastGridLength;
+                }
+                else
+                {
+                    _secondItemLastGridLength = SecondItemLength;
+
+                    SecondItemLength = new GridLength();
+                }
+
+                _secondItemLastVisibility = secondItemVisible;
+
+                hasChanged = true;
             }
 
-            return base.MeasureOverride(availableSize);
+            if (hasChanged)
+            {
+                if (firstItemVisible && secondItemVisible)
+                {
+                    var proportion = GetFirstProportion();
+
+                    FirstItemLength = new GridLength(proportion, GridUnitType.Star);
+                    SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+                }
+
+                if (!firstItemVisible && !secondItemVisible)
+                {
+                    IsVisible = false;
+                }
+                else
+                {
+                    IsVisible = true;
+                }
+            }
         }
     }
 }

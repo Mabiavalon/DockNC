@@ -5,7 +5,7 @@
                 <Border Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
-                   <Grid Name="grid">
+                   <Grid Name="grid" IsVisible="{Binding #grid.TemplatedParent.IsVisible, Mode=TwoWay}">
                     <Grid.RowDefinitions>
                       <RowDefinition Height="{Binding #grid.TemplatedParent.FirstItemLength, Mode=TwoWay}"/>
                       <RowDefinition Height="Auto"/>
