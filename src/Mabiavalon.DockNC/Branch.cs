@@ -12,6 +12,10 @@
     {
         private IDisposable _firstItemVisibilitDisposable;
         private IDisposable _secondItemVisibilityDisposable;
+        private bool _firstItemLastVisibility = true;
+        private bool _secondItemLastVisibility = true;
+        private GridLength _firstItemLastGridLength;
+        private GridLength _secondItemLastGridLength;
 
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>(nameof(Orientation));
@@ -117,63 +121,106 @@
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var firstContentRequiresOverride = false;
-            var secondContentRequiresOverride = false;
+            var firstItemVisible = false;
+            var secondItemVisible = false;
 
             if (FirstItem != null)
             {
-                var firstChildControl = FirstItem as Visual;
+                var firstChildControl = FirstContentPresenter?.Child as Visual;
 
-                // Might be a POCO with a DataTemplate
-                if (firstChildControl == null)
+                if (firstChildControl != null)
                 {
-                    firstChildControl = FirstContentPresenter.Child as Visual;
-
-                    if (firstChildControl == null)
-                        throw new Exception($"Unable to find DataTemplate for 'FirstItem''s value {FirstItem}");
+                    firstItemVisible = firstChildControl.IsVisible;
                 }
-
-                firstContentRequiresOverride |= !firstChildControl.IsVisible;
             }
-            else
-                firstContentRequiresOverride = true;
 
             if (SecondItem != null)
             {
-                var secondChildControl = SecondItem as Visual;
+                var secondChildControl = SecondContentPresenter?.Child as Visual;
 
-                // Might be a POCO with a DataTemplate
-                if (secondChildControl == null)
+                if(secondChildControl != null)
                 {
-                    secondChildControl = SecondContentPresenter.Child as Visual;
+                    secondItemVisible = secondChildControl.IsVisible;
+                }
+            }
 
-                    if (secondChildControl == null)
-                        throw new Exception($"Unable to find DataTemplate for 'SecondItem''s value {SecondItem}");
+            if (firstItemVisible && secondItemVisible)
+            {
+                if(firstItemVisible != _firstItemLastVisibility)
+                {
+                    FirstItemLength = _firstItemLastGridLength;
+
+                    _firstItemLastVisibility = firstItemVisible;
                 }
 
-                secondContentRequiresOverride |= !secondChildControl.IsVisible;
-            }
-            else
-                secondContentRequiresOverride = true;
+                if(secondItemVisible != _secondItemLastVisibility)
+                {
+                    SecondItemLength = _secondItemLastGridLength;
 
-            if (firstContentRequiresOverride && secondContentRequiresOverride)
+                    _secondItemLastVisibility = secondItemVisible;
+                }
+
+                var proportion = GetFirstProportion();
+
+                FirstItemLength = new GridLength(proportion, GridUnitType.Star);
+                SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+            }
+            else if (!firstItemVisible && !secondItemVisible)
             {
+                if (firstItemVisible != _firstItemLastVisibility)
+                {
+                    _firstItemLastGridLength = FirstItemLength;
+
+                    FirstItemLength = new GridLength();
+                }
+
+                _firstItemLastVisibility = firstItemVisible;
+
+                if (secondItemVisible != _secondItemLastVisibility)
+                {
+                    _secondItemLastGridLength = SecondItemLength;
+
+                    SecondItemLength = new GridLength();
+                }
+
+                _secondItemLastVisibility = secondItemVisible;
+
                 return Orientation == Orientation.Horizontal ? new Size(Width, 0) : new Size(0, Height);
             }
-
-            var proportion = GetFirstProportion();
-
-            if (firstContentRequiresOverride)
+            else
             {
-                proportion = 0;
-            }
-            else if (secondContentRequiresOverride)
-            {
-                proportion = 1;
-            }
+                if (firstItemVisible != _firstItemLastVisibility)
+                {
+                    if (firstItemVisible)
+                    {
+                        FirstItemLength = _firstItemLastGridLength;
+                    }
+                    else
+                    {
+                        _firstItemLastGridLength = FirstItemLength;
 
-            FirstItemLength = new GridLength(proportion, GridUnitType.Star);
-            SecondItemLength = new GridLength(1 - proportion, GridUnitType.Star);
+                        FirstItemLength = new GridLength();
+                    }
+
+                    _firstItemLastVisibility = firstItemVisible;
+                }
+
+                if (secondItemVisible != _secondItemLastVisibility)
+                {
+                    if (secondItemVisible)
+                    {
+                        SecondItemLength = _secondItemLastGridLength;
+                    }
+                    else
+                    {
+                        _secondItemLastGridLength = SecondItemLength;
+
+                        SecondItemLength = new GridLength();
+                    }
+
+                    _secondItemLastVisibility = secondItemVisible;
+                }
+            }
 
             return base.MeasureOverride(availableSize);
         }
