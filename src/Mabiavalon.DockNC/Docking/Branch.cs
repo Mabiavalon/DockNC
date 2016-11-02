@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
+using Avalonia.LogicalTree;
 
 namespace Mabiavalon.DockNC.Docking
 {
@@ -60,9 +61,51 @@ namespace Mabiavalon.DockNC.Docking
 
         public Branch()
         {
-            FirstItemProperty.Changed.Subscribe(o => RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable));
+            FirstItemProperty.Changed.Subscribe(o =>
+            {
+                RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
 
-            SecondItemProperty.Changed.Subscribe(o => RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable));
+                var oldChild = (Control) o.OldValue;
+                
+                var newChild = (Control) o.NewValue;
+
+                if (oldChild != null)
+                {
+                    ((ISetLogicalParent)o.OldValue).SetParent(null);
+                    LogicalChildren.Remove(oldChild);
+                    //Visual Tree Already Managed
+                }
+
+                if (newChild != null)
+                {
+                    ((ISetLogicalParent)o.NewValue).SetParent(this);
+                    LogicalChildren.Add(newChild);
+                }
+                
+
+            });
+
+            SecondItemProperty.Changed.Subscribe(o =>
+            {
+                RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
+
+                var oldChild = (Control)o.OldValue;
+
+                var newChild = (Control)o.NewValue;
+
+                if (oldChild != null)
+                {
+                    ((ISetLogicalParent)o.OldValue).SetParent(null);
+                    LogicalChildren.Remove(oldChild);
+                    //Visual Tree Already Managed
+                }
+
+                if (newChild != null)
+                {
+                    ((ISetLogicalParent)o.NewValue).SetParent(this);
+                    LogicalChildren.Add(newChild);
+                }
+            });
         }
 
         public Orientation Orientation

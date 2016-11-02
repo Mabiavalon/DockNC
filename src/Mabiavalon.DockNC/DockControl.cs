@@ -1,11 +1,18 @@
 ﻿using System;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
+using Avalonia.Controls.Primitives;
 using Mabiavalon.DockNC.Docking;
 
 namespace Mabiavalon.DockNC
 {
     public class DockControl : ContentControl
     {
+        public DockControl()
+        {
+            ContentProperty.Changed.Subscribe(o => DockPresenter?.UpdateChild());
+        }
+
         //TODO: Edge Case: Deal with empty Branches
         public void Dock(object obj, DockTarget dockTarget)
         {
@@ -29,6 +36,8 @@ namespace Mabiavalon.DockNC
             }
 
             var currentBranch = Content as Branch;
+
+            Content = null;
 
             //TODO: THe logic is now in the second overload of dock, I just have to refactor to make it clean.
             if (currentBranch == null)
@@ -180,5 +189,16 @@ namespace Mabiavalon.DockNC
                 ? Orientation.Vertical
                 : Orientation.Horizontal;
         }
+
+        protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
+        {
+            base.OnTemplateApplied(e);
+
+            DockPresenter = e.NameScope.Find<ContentPresenter>("PART_DockPresenter");
+        }
+
+        internal ContentPresenter DockPresenter { get; set; }
+
+
     }
 }
