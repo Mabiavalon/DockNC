@@ -39,17 +39,13 @@ namespace DockTestApplication
 
         private void NestInternal(DockTarget dockTarget)
         {
-            var button = CreateActionButton();
-
-            _docker.Dock(button, dockTarget);
+            _docker.Dock(CreateActionButton(), dockTarget);
             IterationItem();
         }
 
         private void SplitInternal(Branch branch, BranchItem branchItem)
         {
-            var button = CreateActionButton();
-
-            _docker.Dock(button, RandomEnum<DockTarget>(), branch, branchItem);
+            _docker.Dock(CreateActionButton(), RandomEnum<DockTarget>(), branch, branchItem);
             IterationItem();
         }
 
