@@ -116,6 +116,9 @@ namespace Mabiavalon.DockNC.Docking
             UpdateLogicalChildren(null, FirstContentPresenter.Content);
             UpdateLogicalChildren(null, SecondContentPresenter.Content);
 
+            InvalidateVisibilityChanges();
+            InvalidateMeasure();
+
             RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
         }
