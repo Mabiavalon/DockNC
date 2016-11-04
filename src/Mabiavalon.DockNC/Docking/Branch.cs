@@ -16,6 +16,9 @@ namespace Mabiavalon.DockNC.Docking
         private GridLength _firstItemLastGridLength;
         private GridLength _secondItemLastGridLength;
 
+        public static readonly StyledProperty<bool> IsVisibleProperty =
+            IsVisibleProperty.AddOwner<Branch>();
+
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>(nameof(Orientation));
 
