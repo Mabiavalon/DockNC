@@ -4,8 +4,8 @@
             <ControlTemplate>
                 <Border Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}" IsVisible="{Binding #grid.TemplatedParent.IsNotCollapsed, Mode=TwoWay}">
-                   <Grid Name="grid">
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                   <Grid Name="grid" IsVisible="{Binding #grid.TemplatedParent.IsVisible, Mode=TwoWay}">
                     <Grid.RowDefinitions>
                       <RowDefinition Height="{Binding #grid.TemplatedParent.FirstItemLength, Mode=TwoWay}"/>
                       <RowDefinition Height="Auto"/>
@@ -24,8 +24,8 @@
       <ControlTemplate>
         <Border Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}" IsVisible="{Binding #grid.TemplatedParent.IsNotCollapsed, Mode=TwoWay}">
-          <Grid Name="grid">
+                BorderThickness="{TemplateBinding BorderThickness}">
+          <Grid Name="grid" IsVisible="{Binding #grid.TemplatedParent.IsVisible, Mode=TwoWay}">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="{Binding #grid.TemplatedParent.FirstItemLength, Mode=TwoWay}" />
               <ColumnDefinition Width="Auto"/>
