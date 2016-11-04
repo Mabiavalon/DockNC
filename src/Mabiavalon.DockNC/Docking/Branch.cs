@@ -41,71 +41,9 @@ namespace Mabiavalon.DockNC.Docking
             AffectsMeasure(FirstItemProperty, SecondItemProperty, DataContextProperty);
         }
 
-        private void RegisterVisualChanges(ContentPresenter presenter, ref IDisposable disposable)
-        {
-            disposable?.Dispose();
-
-            presenter?.UpdateChild();
-
-            var newVisual = presenter?.Child as Visual;
-
-            if (newVisual != null)
-            {
-                disposable = newVisual.GetObservable(IsVisibleProperty).Subscribe(visible =>
-                {
-                    InvalidateVisibilityChanges();
-                    InvalidateMeasure();
-                });
-            }
-        }
-
         public Branch()
         {
-            FirstItemProperty.Changed.Subscribe(o =>
-            {
-                RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
-
-                var oldChild = (Control) o.OldValue;
-                
-                var newChild = (Control) o.NewValue;
-
-                if (oldChild != null)
-                {
-                    ((ISetLogicalParent)o.OldValue).SetParent(null);
-                    LogicalChildren.Remove(oldChild);
-                    //Visual Tree Already Managed
-                }
-
-                if (newChild != null)
-                {
-                    ((ISetLogicalParent)o.NewValue).SetParent(this);
-                    LogicalChildren.Add(newChild);
-                }
-                
-
-            });
-
-            SecondItemProperty.Changed.Subscribe(o =>
-            {
-                RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
-
-                var oldChild = (Control)o.OldValue;
-
-                var newChild = (Control)o.NewValue;
-
-                if (oldChild != null)
-                {
-                    ((ISetLogicalParent)o.OldValue).SetParent(null);
-                    LogicalChildren.Remove(oldChild);
-                    //Visual Tree Already Managed
-                }
-
-                if (newChild != null)
-                {
-                    ((ISetLogicalParent)o.NewValue).SetParent(this);
-                    LogicalChildren.Add(newChild);
-                }
-            });
+            
         }
 
         public Orientation Orientation
@@ -161,8 +99,70 @@ namespace Mabiavalon.DockNC.Docking
             FirstContentPresenter = e.NameScope.Find<ContentPresenter>("PART_FirstContentPresenter");
             SecondContentPresenter = e.NameScope.Find<ContentPresenter>("PART_SecondContentPresenter");
 
+            FirstContentPresenter.GetObservableWithHistory(ContentPresenter.ContentProperty).Subscribe(o =>
+            {
+                RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
+
+                var oldChild = (Control)o.Item1;
+
+                var newChild = (Control)o.Item2;
+
+                if (oldChild != null)
+                {
+                    ((ISetLogicalParent)o.Item1).SetParent(null);
+                    LogicalChildren.Remove(oldChild);
+                    //Visual Tree Already Managed
+                }
+
+                if (newChild != null)
+                {
+                    ((ISetLogicalParent)o.Item2).SetParent(this);
+                    LogicalChildren.Add(newChild);
+                }
+            });
+
+            SecondContentPresenter.GetObservableWithHistory(ContentPresenter.ContentProperty).Subscribe(o =>
+            {
+                RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
+
+                var oldChild = (Control)o.Item1;
+
+                var newChild = (Control)o.Item2;
+
+                if (oldChild != null)
+                {
+                    ((ISetLogicalParent)o.Item1).SetParent(null);
+                    LogicalChildren.Remove(oldChild);
+                    //Visual Tree Already Managed
+                }
+
+                if (newChild != null)
+                {
+                    ((ISetLogicalParent)o.Item2).SetParent(this);
+                    LogicalChildren.Add(newChild);
+                }
+            });
+
             RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
+        }
+
+        private void RegisterVisualChanges(ContentPresenter presenter, ref IDisposable disposable)
+        {
+            disposable?.Dispose();
+
+            presenter?.UpdateChild();
+
+            var newVisual = presenter?.Child as Visual;
+
+            if (newVisual != null)
+            {
+                disposable = newVisual.GetObservable(IsVisibleProperty).Subscribe(visible =>
+                {
+                    InvalidateVisibilityChanges();
+                    InvalidateMeasure();
+                });
+            }
         }
 
         private void InvalidateVisibilityChanges()
