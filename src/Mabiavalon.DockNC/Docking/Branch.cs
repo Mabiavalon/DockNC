@@ -103,64 +103,41 @@ namespace Mabiavalon.DockNC.Docking
             {
                 RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
 
-                var oldChild = (Control)o.Item1;
-
-                var newChild = (Control)o.Item2;
-
-                if (oldChild != null)
-                {
-                    ((ISetLogicalParent)o.Item1).SetParent(null);
-                    LogicalChildren.Remove(oldChild);
-                    //Visual Tree Already Managed
-                }
-
-                if (newChild != null)
-                {
-                    ((ISetLogicalParent)o.Item2).SetParent(this);
-                    LogicalChildren.Add(newChild);
-                }
+                UpdateLogicalChildren(o.Item1, o.Item2);
             });
 
             SecondContentPresenter.GetObservableWithHistory(ContentPresenter.ContentProperty).Subscribe(o =>
             {
                 RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
 
-                var oldChild = (Control)o.Item1;
-
-                var newChild = (Control)o.Item2;
-
-                if (oldChild != null)
-                {
-                    ((ISetLogicalParent)o.Item1).SetParent(null);
-                    LogicalChildren.Remove(oldChild);
-                    //Visual Tree Already Managed
-                }
-
-                if (newChild != null)
-                {
-                    ((ISetLogicalParent)o.Item2).SetParent(this);
-                    LogicalChildren.Add(newChild);
-                }
+                UpdateLogicalChildren(o.Item1, o.Item2);
             });
 
-            var firstChild = (Control)FirstContentPresenter.Content;
-
-            if (firstChild != null)
-            {
-                ((ISetLogicalParent)firstChild).SetParent(this);
-                LogicalChildren.Add(firstChild);
-            }
-
-            var secondChild = (Control)SecondContentPresenter.Content;
-
-            if (secondChild != null)
-            {
-                ((ISetLogicalParent)secondChild).SetParent(this);
-                LogicalChildren.Add(secondChild);
-            }
+            UpdateLogicalChildren(null, FirstContentPresenter.Content);
+            UpdateLogicalChildren(null, SecondContentPresenter.Content);
 
             RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
+        }
+
+        private void UpdateLogicalChildren(object oldItem, object newItem)
+        {
+            var oldChild = (Control) oldItem;
+
+            var newChild = (Control) newItem;
+
+            if (oldChild != null)
+            {
+                ((ISetLogicalParent) oldItem).SetParent(null);
+                LogicalChildren.Remove(oldChild);
+                //Visual Tree Already Managed
+            }
+
+            if (newChild != null)
+            {
+                ((ISetLogicalParent) newItem).SetParent(this);
+                LogicalChildren.Add(newChild);
+            }
         }
 
         private void RegisterVisualChanges(ContentPresenter presenter, ref IDisposable disposable)
