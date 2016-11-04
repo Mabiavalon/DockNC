@@ -16,9 +16,6 @@ namespace Mabiavalon.DockNC.Docking
         private GridLength _firstItemLastGridLength;
         private GridLength _secondItemLastGridLength;
 
-        public static readonly StyledProperty<bool> IsVisibleProperty =
-            IsVisibleProperty.AddOwner<Branch>();
-
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>(nameof(Orientation));
 
@@ -42,11 +39,6 @@ namespace Mabiavalon.DockNC.Docking
             PseudoClass(OrientationProperty, o => o == Orientation.Vertical, ":vertical");
             PseudoClass(OrientationProperty, o => o == Orientation.Horizontal, ":horizontal");
             AffectsMeasure(FirstItemProperty, SecondItemProperty, DataContextProperty);
-        }
-
-        public Branch()
-        {
-            
         }
 
         public Orientation Orientation
