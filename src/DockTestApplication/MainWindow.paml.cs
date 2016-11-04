@@ -20,19 +20,19 @@ namespace DockTestApplication
 
             ItemIteration = 1;
 
-            _docker = this.FindControl<DockControl>("Docker");
+            //_docker = this.FindControl<DockControl>("Docker");
 
-            var topButton = this.FindControl<Button>("DockTop");
-            topButton.Click += (sender, args) => { NestInternal(DockTarget.Top); };
+            //var topButton = this.FindControl<Button>("DockTop");
+            //topButton.Click += (sender, args) => { NestInternal(DockTarget.Top); };
 
-            var bottomButton = this.FindControl<Button>("DockBottom");
-            bottomButton.Click += (sender, args) => { NestInternal(DockTarget.Bottom); };
+            //var bottomButton = this.FindControl<Button>("DockBottom");
+            //bottomButton.Click += (sender, args) => { NestInternal(DockTarget.Bottom); };
 
-            var leftButtun = this.FindControl<Button>("DockLeft");
-            leftButtun.Click += (sender, args) => { NestInternal(DockTarget.Left); };
+            //var leftButtun = this.FindControl<Button>("DockLeft");
+            //leftButtun.Click += (sender, args) => { NestInternal(DockTarget.Left); };
 
-            var rightButton = this.FindControl<Button>("DockRight");
-            rightButton.Click += (sender, args) => { NestInternal(DockTarget.Right); };
+            //var rightButton = this.FindControl<Button>("DockRight");
+            //rightButton.Click += (sender, args) => { NestInternal(DockTarget.Right); };
         }
 
         public int ItemIteration { get; set; }
