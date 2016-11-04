@@ -32,12 +32,13 @@ namespace Mabiavalon.DockNC
                 }
 
                 Content = newBranch;
+
+                newBranch.InvalidateMeasure();
+
                 return;
             }
 
             var currentBranch = Content as Branch;
-
-            Content = null;
 
             //TODO: THe logic is now in the second overload of dock, I just have to refactor to make it clean.
             if (currentBranch == null)
@@ -45,8 +46,12 @@ namespace Mabiavalon.DockNC
 
             if (currentBranch.BranchFilled)
             {
+                Content = null;
+
                 var newBranch = new Branch();
                 Branch(obj, dockTarget, currentBranch, newBranch);
+
+                newBranch.InvalidateMeasure();
 
                 Content = newBranch;
             }
@@ -65,6 +70,8 @@ namespace Mabiavalon.DockNC
                 currentBranch.FirstItemLength = new GridLength(0.49999, GridUnitType.Star);
                 currentBranch.SecondItemLength = new GridLength(0.50001, GridUnitType.Star);
             }
+
+            
         }
 
         public void Dock(object obj, DockTarget dockTarget, Branch branch, BranchItem branchItem)
