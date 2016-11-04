@@ -143,6 +143,22 @@ namespace Mabiavalon.DockNC.Docking
                 }
             });
 
+            var firstChild = (Control)FirstContentPresenter.Content;
+
+            if (firstChild != null)
+            {
+                ((ISetLogicalParent)firstChild).SetParent(this);
+                LogicalChildren.Add(firstChild);
+            }
+
+            var secondChild = (Control)SecondContentPresenter.Content;
+
+            if (secondChild != null)
+            {
+                ((ISetLogicalParent)secondChild).SetParent(this);
+                LogicalChildren.Add(secondChild);
+            }
+
             RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
         }
