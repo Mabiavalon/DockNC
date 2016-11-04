@@ -2,23 +2,44 @@
         xmlns:dock="clr-namespace:Mabiavalon.DockNC;assembly=Mabiavalon.DockNC"
         xmlns:docking="clr-namespace:Mabiavalon.DockNC.Docking;assembly=Mabiavalon.DockNC">
   <Grid>
-    <dock:DockControl>
-      <docking:Branch Orientation="Horizontal" FirstItemLength="0.7*" SecondItemLength="0.3*">
-        <docking:Branch.FirstItem>
-          <Button Content="A Left Button"/>
-        </docking:Branch.FirstItem>
-        <docking:Branch.SecondItem>
-          <docking:Branch Orientation="Horizontal" FirstItemLength="0.7*" SecondItemLength="0.3*">
-            <docking:Branch.FirstItem>
-              <Button Content="B Left Button" IsVisible="false" />
-            </docking:Branch.FirstItem>
-            <docking:Branch.SecondItem>
-              <Button Content="B Right Button" IsVisible="false" />
-            </docking:Branch.SecondItem>
-          </docking:Branch>
-        </docking:Branch.SecondItem>
-      </docking:Branch>
-    </dock:DockControl>
-
+    <TabControl>
+      <TabItem Header="Dock In Code">
+        <Grid>
+          <dock:DockControl Name="Docker"/>
+          <Button Name="DockBottom" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Dock Bottom"/>
+          <Button Name="DockTop" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Dock Top"/>
+          <Button Name="DockLeft" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Dock Left"/>
+          <Button Name="DockRight" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Dock Right"/>
+        </Grid>
+      </TabItem>
+      <TabItem Header="Dock in XAML">
+        <Grid>
+          <dock:DockControl>
+            <docking:Branch Orientation="Horizontal" FirstItemLength="0.7*" SecondItemLength="0.3*">
+              <docking:Branch.FirstItem>
+                <docking:Branch FirstItemLength="0.7*" SecondItemLength="0.3*">
+                  <docking:Branch.FirstItem>
+                    <docking:Branch>
+                      <docking:Branch.FirstItem>
+                        <Button Content="Top Left Button"/>
+                      </docking:Branch.FirstItem>
+                      <docking:Branch.SecondItem>
+                        <Button Content="Top Right Button" IsVisible="false"/>
+                      </docking:Branch.SecondItem>
+                    </docking:Branch>
+                  </docking:Branch.FirstItem>
+                  <docking:Branch.SecondItem>
+                    <Button Content="Bottom Button"/>
+                  </docking:Branch.SecondItem>
+                </docking:Branch>
+              </docking:Branch.FirstItem>
+              <docking:Branch.SecondItem>
+                <Button Content="Right Button"/>
+              </docking:Branch.SecondItem>
+            </docking:Branch>
+          </dock:DockControl>
+        </Grid>
+      </TabItem>
+    </TabControl>
   </Grid>
 </Window>
