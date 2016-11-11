@@ -1,12 +1,12 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.Presenters;
-using Avalonia.Controls.Primitives;
-using Avalonia.LogicalTree;
-
-namespace Mabiavalon.DockNC.Docking
+﻿namespace Mabiavalon.DockNC.Docking
 {
+    using System;
+    using Avalonia;
+    using Avalonia.Controls;
+    using Avalonia.Controls.Presenters;
+    using Avalonia.Controls.Primitives;
+    using System.Reactive.Disposables;
+
     public class Branch : TemplatedControl
     {
         private IDisposable _firstItemVisibilityDisposable;
@@ -139,7 +139,7 @@ namespace Mabiavalon.DockNC.Docking
             InvalidateVisibilityChanges();
             InvalidateMeasure();
 
-            RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
+            RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilityDisposable);
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
         }
 
