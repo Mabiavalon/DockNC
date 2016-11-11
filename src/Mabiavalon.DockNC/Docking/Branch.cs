@@ -9,12 +9,13 @@ namespace Mabiavalon.DockNC.Docking
 {
     public class Branch : TemplatedControl
     {
-        private IDisposable _firstItemVisibilitDisposable;
+        private IDisposable _firstItemVisibilityDisposable;
         private IDisposable _secondItemVisibilityDisposable;
         private bool _firstItemLastVisibility = true;
         private bool _secondItemLastVisibility = true;
         private GridLength _firstItemLastGridLength;
-        private GridLength _secondItemLastGridLength;        
+        private GridLength _secondItemLastGridLength;
+        private CompositeDisposable _disposables = new CompositeDisposable();
 
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>(nameof(Orientation));
@@ -96,6 +97,21 @@ namespace Mabiavalon.DockNC.Docking
             return 1 / (FirstItemLength.Value + SecondItemLength.Value) * FirstItemLength.Value;
         }
 
+        protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            if (_firstItemVisibilityDisposable != null)
+            {
+                _disposables.Add(_firstItemVisibilityDisposable);
+            }
+
+            if (_secondItemVisibilityDisposable != null)
+            {
+                _disposables.Add(_secondItemVisibilityDisposable);
+            }
+
+            _disposables.Dispose();
+        }
+
         protected override void OnTemplateApplied(TemplateAppliedEventArgs e)
         {
             base.OnTemplateApplied(e);
@@ -103,19 +119,19 @@ namespace Mabiavalon.DockNC.Docking
             FirstContentPresenter = e.NameScope.Find<ContentPresenter>("PART_FirstContentPresenter");
             SecondContentPresenter = e.NameScope.Find<ContentPresenter>("PART_SecondContentPresenter");
 
-            FirstContentPresenter.GetObservableWithHistory(ContentPresenter.ContentProperty).Subscribe(o =>
+            _disposables.Add(FirstContentPresenter.GetObservableWithHistory(ContentPresenter.ContentProperty).Subscribe(o =>
             {
-                RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
+                RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilityDisposable);
 
                 UpdateLogicalChildren(o.Item1, o.Item2);
-            });
+            }));
 
-            SecondContentPresenter.GetObservableWithHistory(ContentPresenter.ContentProperty).Subscribe(o =>
+            _disposables.Add(SecondContentPresenter.GetObservableWithHistory(ContentPresenter.ContentProperty).Subscribe(o =>
             {
                 RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
 
                 UpdateLogicalChildren(o.Item1, o.Item2);
-            });
+            }));
 
             UpdateLogicalChildren(null, FirstContentPresenter.Content);
             UpdateLogicalChildren(null, SecondContentPresenter.Content);
@@ -135,7 +151,7 @@ namespace Mabiavalon.DockNC.Docking
 
             if (oldChild != null)
             {
-                ((ISetLogicalParent) oldItem).SetParent(null);
+                //((ISetLogicalParent)oldItem).SetParent(null);
                 LogicalChildren.Remove(oldChild);
                 //Visual Tree Already Managed
             }
