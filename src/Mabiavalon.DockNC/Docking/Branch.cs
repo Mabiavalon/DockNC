@@ -14,7 +14,7 @@ namespace Mabiavalon.DockNC.Docking
         private bool _firstItemLastVisibility = true;
         private bool _secondItemLastVisibility = true;
         private GridLength _firstItemLastGridLength;
-        private GridLength _secondItemLastGridLength;
+        private GridLength _secondItemLastGridLength;        
 
         public static readonly StyledProperty<Orientation> OrientationProperty =
             AvaloniaProperty.Register<Branch, Orientation>(nameof(Orientation));
@@ -33,6 +33,9 @@ namespace Mabiavalon.DockNC.Docking
 
         public static readonly StyledProperty<GridLength> SecondItemLengthProperty =
             AvaloniaProperty.Register<Branch, GridLength>(nameof(SecondItemLength), new GridLength(0.50001, GridUnitType.Star));
+
+        public static readonly StyledProperty<bool> IsNotCollapsedProperty =
+            AvaloniaProperty.Register<Branch, bool>(nameof(IsNotCollapsed));
 
         static Branch()
         {
@@ -75,6 +78,12 @@ namespace Mabiavalon.DockNC.Docking
         {
             get { return GetValue(GridSplitterVisibleProperty); }
             set { SetValue(GridSplitterVisibleProperty, value); }
+        }
+
+        public bool IsNotCollapsed
+        {
+            get { return GetValue(IsNotCollapsedProperty); }
+            set { SetValue(IsNotCollapsedProperty, value); }
         }
 
         public bool BranchFilled => FirstItem != null && SecondItem != null;
@@ -237,11 +246,11 @@ namespace Mabiavalon.DockNC.Docking
 
                 if (!firstItemVisible && !secondItemVisible)
                 {
-                    IsVisible = false;
+                    IsNotCollapsed = false;
                 }
                 else
                 {
-                    IsVisible = true;
+                    IsNotCollapsed = true;
                 }
             }
         }
