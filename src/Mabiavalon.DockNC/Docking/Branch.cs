@@ -150,14 +150,11 @@
 
             if (oldChild != null)
             {
-                //((ISetLogicalParent)oldItem).SetParent(null);
                 LogicalChildren.Remove(oldChild);
-                //Visual Tree Already Managed
             }
 
             if (newChild != null)
             {
-                ((ISetLogicalParent)newItem).SetParent(this);
                 LogicalChildren.Add(newChild);
             }
         }
