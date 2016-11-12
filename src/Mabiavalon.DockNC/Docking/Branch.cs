@@ -1,12 +1,11 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.Presenters;
-using Avalonia.Controls.Primitives;
-using Avalonia.LogicalTree;
-
-namespace Mabiavalon.DockNC.Docking
+﻿namespace Mabiavalon.DockNC.Docking
 {
+    using Avalonia;
+    using Avalonia.Controls;
+    using Avalonia.Controls.Presenters;
+    using Avalonia.Controls.Primitives;
+    using System;
+
     public class Branch : TemplatedControl
     {
         private IDisposable _firstItemVisibilityDisposable;
@@ -35,8 +34,7 @@ namespace Mabiavalon.DockNC.Docking
         public static readonly StyledProperty<GridLength> SecondItemLengthProperty =
             AvaloniaProperty.Register<Branch, GridLength>(nameof(SecondItemLength), new GridLength(0.50001, GridUnitType.Star));
 
-        public static readonly StyledProperty<bool> IsNotCollapsedProperty =
-            AvaloniaProperty.Register<Branch, bool>(nameof(IsNotCollapsed));
+        public static readonly StyledProperty<bool> IsVisibleProperty = Visual.IsVisibleProperty.AddOwner<Branch>();
 
         static Branch()
         {
@@ -81,10 +79,10 @@ namespace Mabiavalon.DockNC.Docking
             set { SetValue(GridSplitterVisibleProperty, value); }
         }
 
-        public bool IsNotCollapsed
+        public bool IsVisible
         {
-            get { return GetValue(IsNotCollapsedProperty); }
-            set { SetValue(IsNotCollapsedProperty, value); }
+            get { return GetValue(IsVisibleProperty); }
+            set { SetValue(IsVisibleProperty, value); }
         }
 
         public bool BranchFilled => FirstItem != null && SecondItem != null;
@@ -136,18 +134,15 @@ namespace Mabiavalon.DockNC.Docking
             UpdateLogicalChildren(null, FirstContentPresenter.Content);
             UpdateLogicalChildren(null, SecondContentPresenter.Content);
 
-            InvalidateVisibilityChanges();
-            InvalidateMeasure();
-
             RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
         }
 
         private void UpdateLogicalChildren(object oldItem, object newItem)
         {
-            var oldChild = (Control) oldItem;
+            var oldChild = (Control)oldItem;
 
-            var newChild = (Control) newItem;
+            var newChild = (Control)newItem;
 
             if (oldChild != null)
             {
@@ -158,7 +153,7 @@ namespace Mabiavalon.DockNC.Docking
 
             if (newChild != null)
             {
-                ((ISetLogicalParent) newItem).SetParent(this);
+                ((ISetLogicalParent)newItem).SetParent(this);
                 LogicalChildren.Add(newChild);
             }
         }
@@ -262,11 +257,11 @@ namespace Mabiavalon.DockNC.Docking
 
                 if (!firstItemVisible && !secondItemVisible)
                 {
-                    IsNotCollapsed = false;
+                    IsVisible = false;
                 }
                 else
                 {
-                    IsNotCollapsed = true;
+                    IsVisible = true;
                 }
             }
         }
