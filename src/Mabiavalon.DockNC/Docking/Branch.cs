@@ -1,10 +1,11 @@
 ﻿namespace Mabiavalon.DockNC.Docking
 {
+    using System;
     using Avalonia;
     using Avalonia.Controls;
     using Avalonia.Controls.Presenters;
     using Avalonia.Controls.Primitives;
-    using System;
+    using System.Reactive.Disposables;
 
     public class Branch : TemplatedControl
     {
@@ -134,7 +135,10 @@
             UpdateLogicalChildren(null, FirstContentPresenter.Content);
             UpdateLogicalChildren(null, SecondContentPresenter.Content);
 
-            RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilitDisposable);
+            InvalidateVisibilityChanges();
+            InvalidateMeasure();
+
+            RegisterVisualChanges(FirstContentPresenter, ref _firstItemVisibilityDisposable);
             RegisterVisualChanges(SecondContentPresenter, ref _secondItemVisibilityDisposable);
         }
 
@@ -146,14 +150,11 @@
 
             if (oldChild != null)
             {
-                //((ISetLogicalParent)oldItem).SetParent(null);
                 LogicalChildren.Remove(oldChild);
-                //Visual Tree Already Managed
             }
 
             if (newChild != null)
             {
-                ((ISetLogicalParent)newItem).SetParent(this);
                 LogicalChildren.Add(newChild);
             }
         }
