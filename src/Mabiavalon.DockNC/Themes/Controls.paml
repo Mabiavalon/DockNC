@@ -12,7 +12,7 @@
                       <RowDefinition Height="{Binding #grid.TemplatedParent.SecondItemLength, Mode=TwoWay}"/>  
                      </Grid.RowDefinitions>
                      <ContentPresenter Name="PART_FirstContentPresenter" Content="{TemplateBinding FirstItem}"/>
-                     <GridSplitter Grid.Row="1" Orientation="Horizontal" Height="5" IsVisible="{Binding #grid.TemplatedParent.GridSplitterVisible, Mode=TwoWay}" />                     
+                     <GridSplitter Grid.Row="1" Height="5" IsVisible="{Binding #grid.TemplatedParent.GridSplitterVisible, Mode=TwoWay}" />                     
                      <ContentPresenter Grid.Row="2" Name="PART_SecondContentPresenter" Content="{TemplateBinding SecondItem}"/>
                     </Grid>
                 </Border>
@@ -32,7 +32,7 @@
               <ColumnDefinition Width="{Binding #grid.TemplatedParent.SecondItemLength, Mode=TwoWay}"/>
             </Grid.ColumnDefinitions>
             <ContentPresenter Name="PART_FirstContentPresenter" Content="{TemplateBinding FirstItem}"/>
-            <GridSplitter Grid.Column="1" Orientation="Vertical" Width="5" IsVisible="{Binding #grid.TemplatedParent.GridSplitterVisible, Mode=TwoWay}" />            
+            <GridSplitter Grid.Column="1" Width="5" IsVisible="{Binding #grid.TemplatedParent.GridSplitterVisible, Mode=TwoWay}" />            
             <ContentPresenter Grid.Column="2" Name="PART_SecondContentPresenter" Content="{TemplateBinding SecondItem}"/>
         </Grid>
         </Border>
