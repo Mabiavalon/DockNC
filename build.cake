@@ -2,12 +2,14 @@
 // ADDINS
 /////////////////////////////////////////////////////////////////////
 
-#addin "nuget:?package=Polly&version=4.2.0"
+#addin "nuget:?package=Polly&version=5.0.6"
 #addin "nuget:?package=NuGet.Core&version=2.12.0"
 
 //////////////////////////////////////////////////////////////////////
 // TOOLS
 //////////////////////////////////////////////////////////////////////
+
+#tool "nuget:https://dotnet.myget.org/F/nuget-build/?package=NuGet.CommandLine&version=4.3.0-beta1-2361&prerelease"
 
 ///////////////////////////////////////////////////////////////////////////////
 // USINGS
@@ -34,7 +36,6 @@ var configuration = Argument("configuration", "Release");
 var MainRepo = "Mabiavalon/DockNC";
 var MasterBranch = "master";
 var ReleasePlatform = "Any CPU";
-var AssemblyInfoPath = File("./src/Mabiavalon.DockNC/Properties/AssemblyInfo.cs");
 var ReleaseConfiguration = "Release";
 var MSBuildSolution = "./Mabiavalon.DockNC.sln";
 var XBuildSolution = "./Mabiavalon.DockNC.sln";
@@ -64,7 +65,7 @@ var isNuGetRelease = isTagged && isReleasable;
 // VERSION
 ///////////////////////////////////////////////////////////////////////////////
 
-var version = ParseAssemblyInfo(AssemblyInfoPath).AssemblyVersion;
+var version = XmlPeek("./src/Mabiavalon.DockNC/Mabiavalon.DockNC.csproj", "//*[local-name()='Version']/text()");
 
 if (isRunningOnAppVeyor)
 {
@@ -165,9 +166,10 @@ var nuspecNuGetBehaviors = new NuGetPackSettings()
     },
     Files = new []
     {
-        // Mabiavalon.DockNC
-        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + dirSuffix + "/Mabiavalon.DockNC.dll", Target = "lib/portable-windows8+net45" },
-        //new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + dirSuffix + "/Mabiavalon.DockNC.xml", Target = "lib/portable-windows8+net45" },
+        // netcoreapp1.1
+        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + configuration + "/netcoreapp1.1/Mabiavalon.DockNC.dll", Target = "lib/netcoreapp1.1" },
+        // net45
+        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + configuration + "/net45/Mabiavalon.DockNC.dll", Target = "lib/net45" }
     },
     BasePath = Directory("./"),
     OutputDirectory = nugetRoot
@@ -248,12 +250,14 @@ Task("Restore-NuGet-Packages")
             if(isRunningOnWindows)
             {
                 NuGetRestore(MSBuildSolution, new NuGetRestoreSettings {
+                    ToolPath = "./tools/NuGet.CommandLine/tools/NuGet.exe",
                     ToolTimeout = TimeSpan.FromMinutes(toolTimeout)
                 });
             }
             else
             {
                 NuGetRestore(XBuildSolution, new NuGetRestoreSettings {
+                    ToolPath = "./tools/NuGet.CommandLine/tools/NuGet.exe",
                     ToolTimeout = TimeSpan.FromMinutes(toolTimeout)
                 });
             }
@@ -267,6 +271,7 @@ Task("Build")
     if(isRunningOnWindows)
     {
         MSBuild(MSBuildSolution, settings => {
+            settings.UseToolVersion(MSBuildToolVersion.VS2017);
             settings.SetConfiguration(configuration);
             settings.WithProperty("Platform", "\"" + platform + "\"");
             settings.SetVerbosity(Verbosity.Minimal);
@@ -275,6 +280,7 @@ Task("Build")
     else
     {
         XBuild(XBuildSolution, settings => {
+            settings.UseToolVersion(XBuildToolVersion.Default);
             settings.SetConfiguration(configuration);
             settings.WithProperty("Platform", "\"" + platform + "\"");
             settings.SetVerbosity(Verbosity.Minimal);
