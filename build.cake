@@ -39,6 +39,7 @@ var ReleasePlatform = "Any CPU";
 var ReleaseConfiguration = "Release";
 var MSBuildSolution = "./Mabiavalon.DockNC.sln";
 var XBuildSolution = "./Mabiavalon.DockNC.sln";
+var NetCoreProject = "./src/Mabiavalon.DockNC/Mabiavalon.DockNC.csproj";
 
 ///////////////////////////////////////////////////////////////////////////////
 // PARAMETERS
@@ -366,6 +367,22 @@ Task("Publish-NuGet")
     Information("Publish-NuGet Task failed, but continuing with next Task...");
 });
 
+Task("Restore-NetCore")
+    .IsDependentOn("Clean")
+    .Does(() =>
+{
+    DotNetCoreRestore(NetCoreProject);
+});
+
+Task("Build-NetCore")
+    .IsDependentOn("Restore-NetCore")
+    .Does(() =>
+{
+    DotNetCoreBuild(NetCoreProject, new DotNetCoreBuildSettings {
+        Configuration = configuration
+    });
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 // TARGETS
 ///////////////////////////////////////////////////////////////////////////////
@@ -381,7 +398,7 @@ Task("AppVeyor")
   .IsDependentOn("Publish-NuGet");
 
 Task("Travis")
-  .IsDependentOn("Build");
+  .IsDependentOn("Build-NetCore");
 
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTE
