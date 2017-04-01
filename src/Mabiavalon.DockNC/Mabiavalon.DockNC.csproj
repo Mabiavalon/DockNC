@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Version>0.0.1</Version>
     <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFrameworks>netstandard1.1</TargetFrameworks>
     <OutputTypeEx>library</OutputTypeEx>
   </PropertyGroup>
   <ItemGroup>
@@ -11,6 +12,6 @@
     <EmbeddedResource Include="Themes\Controls.paml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.4.1-build2612-alpha" />
+    <PackageReference Include="Avalonia" Version="0.4.1-build2916-alpha" />
   </ItemGroup>
 </Project>
