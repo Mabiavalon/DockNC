@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using Polly;
 using NuGet;
 
@@ -105,22 +106,28 @@ var buildDirs =
 ///////////////////////////////////////////////////////////////////////////////
 
 // Key: Package Id
-// Value is Tuple where Item1: Package Version, Item2: The packages.config file path.
+// Value is Tuple where Item1: Package Version, Item2: The *.csproj/*.props file path.
 var packageVersions = new Dictionary<string, IList<Tuple<string,string>>>();
 
-System.IO.Directory.EnumerateFiles(((DirectoryPath)Directory("./src")).FullPath, "packages.config", SearchOption.AllDirectories).ToList().ForEach(fileName =>
-{
-    var file = new PackageReferenceFile(fileName);
-    foreach (PackageReference packageReference in file.GetPackageReferences())
+System.IO.Directory.EnumerateFiles(((DirectoryPath)Directory("./src")).FullPath, "*.csproj", SearchOption.AllDirectories)
+    .ToList()
+    .ForEach(fileName => {
+    var xdoc = XDocument.Load(fileName);
+    foreach (var reference in xdoc.Descendants().Where(x => x.Name.LocalName == "PackageReference"))
     {
+        var name = reference.Attribute("Include").Value;
+        var versionAttribute = reference.Attribute("Version");
+        var packageVersion = versionAttribute != null 
+            ? versionAttribute.Value 
+            : reference.Elements().First(x=>x.Name.LocalName == "Version").Value;
         IList<Tuple<string, string>> versions;
-        packageVersions.TryGetValue(packageReference.Id, out versions);
+        packageVersions.TryGetValue(name, out versions);
         if (versions == null)
         {
             versions = new List<Tuple<string, string>>();
-            packageVersions[packageReference.Id] = versions;
+            packageVersions[name] = versions;
         }
-        versions.Add(Tuple.Create(packageReference.Version.ToString(), fileName));
+        versions.Add(Tuple.Create(packageVersion, fileName));
     }
 });
 
@@ -167,10 +174,7 @@ var nuspecNuGetBehaviors = new NuGetPackSettings()
     },
     Files = new []
     {
-        // netcoreapp1.1
-        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + configuration + "/netcoreapp1.1/Mabiavalon.DockNC.dll", Target = "lib/netcoreapp1.1" },
-        // net45
-        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + configuration + "/net45/Mabiavalon.DockNC.dll", Target = "lib/net45" }
+        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + configuration + "/netstandard1.1/Mabiavalon.DockNC.dll", Target = "lib/netstandard1.1" },
     },
     BasePath = Directory("./"),
     OutputDirectory = nugetRoot
@@ -272,6 +276,7 @@ Task("Build")
     if(isRunningOnWindows)
     {
         MSBuild(MSBuildSolution, settings => {
+            settings.WithProperty("UseRoslynPathHack", "true");
             settings.UseToolVersion(MSBuildToolVersion.VS2017);
             settings.SetConfiguration(configuration);
             settings.WithProperty("Platform", "\"" + platform + "\"");
@@ -281,6 +286,7 @@ Task("Build")
     else
     {
         XBuild(XBuildSolution, settings => {
+            settings.WithProperty("UseRoslynPathHack", "true");
             settings.UseToolVersion(XBuildToolVersion.Default);
             settings.SetConfiguration(configuration);
             settings.WithProperty("Platform", "\"" + platform + "\"");
