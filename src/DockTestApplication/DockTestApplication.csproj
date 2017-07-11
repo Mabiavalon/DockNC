@@ -110,25 +110,25 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <PackageReference Include="Avalonia">
-      <Version>0.4.1-build2916-alpha</Version>
+      <Version>0.5.1-build3388-alpha</Version>
     </PackageReference>
     <PackageReference Include="Avalonia.Cairo">
-      <Version>0.4.1-build2916-alpha</Version>
+      <Version>0.5.1-build3388-alpha</Version>
     </PackageReference>
     <PackageReference Include="Avalonia.Desktop">
-      <Version>0.4.1-build2916-alpha</Version>
+      <Version>0.5.1-build3388-alpha</Version>
     </PackageReference>
     <PackageReference Include="Avalonia.Direct2D1">
-      <Version>0.4.1-build2916-alpha</Version>
+      <Version>0.5.1-build3388-alpha</Version>
     </PackageReference>
     <PackageReference Include="Avalonia.Gtk">
-      <Version>0.4.1-build2916-alpha</Version>
+      <Version>0.5.1-build3388-alpha</Version>
     </PackageReference>
     <PackageReference Include="Avalonia.Skia.Desktop">
-      <Version>0.4.1-build2916-alpha</Version>
+      <Version>0.5.1-build3388-alpha</Version>
     </PackageReference>
     <PackageReference Include="Avalonia.Win32">
-      <Version>0.4.1-build2916-alpha</Version>
+      <Version>0.5.1-build3388-alpha</Version>
     </PackageReference>
     <PackageReference Include="Serilog">
       <Version>2.4.0</Version>
@@ -173,5 +173,5 @@
       <Version>3.0.0</Version>
     </PackageReference>
   </ItemGroup>
-    <Import Project="$(MSBuildThisFileDirectory)..\Shared\nuget.workaround.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\Shared\nuget.workaround.targets" />
 </Project>
