@@ -12,6 +12,6 @@
     <EmbeddedResource Include="Themes\Controls.paml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.4.1-build2916-alpha" />
+    <PackageReference Include="Avalonia" Version="0.5.1-build3388-alpha" />
   </ItemGroup>
 </Project>
