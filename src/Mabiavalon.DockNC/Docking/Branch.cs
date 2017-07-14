@@ -13,6 +13,7 @@
         private IDisposable _secondItemVisibilityDisposable;
         private bool _firstItemLastVisibility = true;
         private bool _secondItemLastVisibility = true;
+        private bool _hasEvaluatedVisibility = false;   // this indicates if we have evaluated the very first time.
         private GridLength _firstItemLastGridLength;
         private GridLength _secondItemLastGridLength;
         private CompositeDisposable _disposables = new CompositeDisposable();
@@ -196,7 +197,7 @@
 
             bool hasChanged = false;
 
-            if (firstItemVisible != _firstItemLastVisibility)
+            if (_hasEvaluatedVisibility && firstItemVisible != _firstItemLastVisibility)
             {
                 if (firstItemVisible)
                 {
@@ -214,7 +215,7 @@
                 hasChanged = true;
             }
 
-            if (secondItemVisible != _secondItemLastVisibility)
+            if (_hasEvaluatedVisibility && secondItemVisible != _secondItemLastVisibility)
             {
                 if (secondItemVisible)
                 {
@@ -232,8 +233,10 @@
                 hasChanged = true;
             }
 
-            if (hasChanged)
+            if ((hasChanged || !_hasEvaluatedVisibility))
             {
+                _hasEvaluatedVisibility = true;
+
                 if (firstItemVisible && secondItemVisible)
                 {
                     var proportion = GetFirstProportion();
