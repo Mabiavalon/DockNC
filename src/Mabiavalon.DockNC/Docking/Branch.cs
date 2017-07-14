@@ -233,7 +233,7 @@
                 hasChanged = true;
             }
 
-            if ((hasChanged || !_hasEvaluatedVisibility))
+            if (hasChanged || !_hasEvaluatedVisibility)
             {
                 _hasEvaluatedVisibility = true;
 
