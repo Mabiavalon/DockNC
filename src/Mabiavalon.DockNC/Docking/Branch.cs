@@ -35,8 +35,6 @@
         public static readonly StyledProperty<GridLength> SecondItemLengthProperty =
             AvaloniaProperty.Register<Branch, GridLength>(nameof(SecondItemLength), new GridLength(0.50001, GridUnitType.Star));
 
-        public static readonly StyledProperty<bool> IsVisibleProperty = Visual.IsVisibleProperty.AddOwner<Branch>();
-
         static Branch()
         {
             PseudoClass(OrientationProperty, o => o == Orientation.Vertical, ":vertical");
@@ -78,12 +76,6 @@
         {
             get { return GetValue(GridSplitterVisibleProperty); }
             set { SetValue(GridSplitterVisibleProperty, value); }
-        }
-
-        public bool IsVisible
-        {
-            get { return GetValue(IsVisibleProperty); }
-            set { SetValue(IsVisibleProperty, value); }
         }
 
         public bool BranchFilled => FirstItem != null && SecondItem != null;
