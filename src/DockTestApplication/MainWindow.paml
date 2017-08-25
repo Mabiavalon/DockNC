@@ -21,7 +21,20 @@
                   <docking:Branch.FirstItem>
                     <docking:Branch>
                       <docking:Branch.FirstItem>
-                        <Button Content="Top Left Button"/>
+                        <docking:DockTabControl>
+                          <TabItem Header="Test1">
+                            
+                          </TabItem>
+                          <TabItem Header="Test2">
+
+                          </TabItem>
+                          <TabItem Header="Test3">
+
+                          </TabItem>
+                          <TabItem Header="Test4">
+
+                          </TabItem>
+                        </docking:DockTabControl>
                       </docking:Branch.FirstItem>
                       <docking:Branch.SecondItem>
                         <Button Content="Top Right Button" IsVisible="false"/>
