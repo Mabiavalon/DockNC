@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Version>0.0.1</Version>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>netstandard1.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <OutputTypeEx>library</OutputTypeEx>
   </PropertyGroup>
   <ItemGroup>
@@ -12,6 +12,6 @@
     <EmbeddedResource Include="Themes\Controls.paml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="0.5.1-build3388-alpha" />
+    <PackageReference Include="Avalonia" Version="0.5.2-build3991-alpha" />
   </ItemGroup>
 </Project>

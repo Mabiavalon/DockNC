@@ -17,8 +17,6 @@ namespace DockTestApplication
 
         private static void Main(string[] args)
         {
-            InitializeLogging();
-
             AppBuilder.Configure<App>().UsePlatformDetect().Start<MainWindow>();
         }
 
@@ -26,17 +24,6 @@ namespace DockTestApplication
         {
 #if DEBUG
             DevTools.Attach(window);
-#endif
-        }
-
-        // This will be made into a runtime configuration extension soon!
-        private static void InitializeLogging()
-        {
-#if DEBUG
-            SerilogLogger.Initialize(new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Trace(outputTemplate: "{Area}: {Message}")
-                .CreateLogger());
 #endif
         }
     }
