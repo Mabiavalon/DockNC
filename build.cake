@@ -174,7 +174,7 @@ var nuspecNuGetBehaviors = new NuGetPackSettings()
     },
     Files = new []
     {
-        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + configuration + "/netstandard1.1/Mabiavalon.DockNC.dll", Target = "lib/netstandard1.1" },
+        new NuSpecContent { Source = "src/Mabiavalon.DockNC/bin/" + configuration + "/netstandard2.0/Mabiavalon.DockNC.dll", Target = "lib/netstandard2.0" },
     },
     BasePath = Directory("./"),
     OutputDirectory = nugetRoot
