@@ -3,6 +3,11 @@ os:
   - linux
   - osx
 dist: trusty
+osx_image: xcode8.3
+env:
+  global:
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+    - DOTNET_CLI_TELEMETRY_OPTOUT=1
 mono:
   - latest
 dotnet: 2.0.0
